@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:property-placeholder location="classpath:/META-INF/db.properties"/>
+    <!-- 使用annotation -->
+    <context:annotation-config/>
+    <!-- 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+    <context:component-scan base-package="com.ndt.action"/>
+    <context:component-scan base-package="com.ndt.service"/>
+    <context:component-scan base-package="com.ndt.dao"/>
+    <context:component-scan base-package="com.ndt.entity"/>
+    <!-- data connection setting -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${database.driverClassName}"/>
+        <property name="jdbcUrl" value="${database.url}"/>
+        <property name="user" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+        <!-- 设置数据库连接池的最大连接数 -->
+        <property name="maxPoolSize" value="50"/>
+        <!-- 设置数据库连接池的最小连接数 -->
+        <property name="minPoolSize" value="5"/>
+        <!-- 设置数据库连接池的初始化连接数 -->
+        <property name="initialPoolSize" value="5"/>
+        <!-- 设置数据库连接池的连接最大空闲时间 -->
+        <property name="maxIdleTime" value="20"/>
+        <!-- c3p0缓存Statement的数量数 -->
+        <property name="maxStatements" value="50"/>
+        <!-- 当连接池里面的连接用完的时候,C3P0一下获取新的连接数 -->
+        <property name="acquireIncrement" value="20"/>
+
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <!-- 可以加多个包 -->
+                <value>com.ndt.entity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="administratorService" class="com.ndt.service.AdministratorService">
+        <property name="administratorDAO" ref="administratorDAO"/>
+    </bean>
+
+    <bean id="loginAction" class="com.ndt.action.LoginAction" scope="prototype">
+        <property name="administratorService" ref="administratorService"/>
+    </bean>
+    <!-- 注册事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--&lt;!&ndash; 注册事务通知 &ndash;&gt;-->
+    <!--<tx:advice id="myAdvice" transaction-manager="transactionManager">-->
+    <!--<tx:attributes>-->
+    <!--<tx:method name="add" isolation="DEFAULT" propagation="REQUIRED"/>-->
+    <!--<tx:method name="remove" isolation="DEFAULT" propagation="REQUIRED" />-->
+    <!--<tx:method name="modify" isolation="DEFAULT" propagation="REQUIRED" />-->
+    <!--<tx:method name="findAllStudents" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
+    <!--<tx:method name="findByNameAndAge" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
+    <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+    <!--&lt;!&ndash; aop配置切入点 &ndash;&gt;-->
+    <!--<aop:config>-->
+    <!--<aop:pointcut expression="execution(* *..Service.*.*(..))" id="myPointCut"/>-->
+    <!--<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointCut"/>-->
+    <!--</aop:config>-->
+    <!--<start id="bean_exception_translation_post_processor" />-->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <!--<end id="bean_exception_translation_post_processor" />-->
+
+
+</beans>

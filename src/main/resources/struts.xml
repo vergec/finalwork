@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="loginAction" class="com.ndt.action.LoginAction">
+			<result name="success">/success.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+	</package>
+</struts>
