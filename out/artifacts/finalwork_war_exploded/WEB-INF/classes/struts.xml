@@ -8,9 +8,9 @@
 	<constant name="struts.objectFactory" value="spring" />
     <constant name="struts.devMode" value="true" />
 	<package name="default" namespace="/" extends="struts-default">
-		<action name="loginAction" class="com.ndt.action.LoginAction">
-			<result name="success">success.jsp</result>
-			<result name="error">index.jsp</result>
+		<action name="loginAction" class="loginAction">
+			<result name="success">/success.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
 	</package>
 </struts>

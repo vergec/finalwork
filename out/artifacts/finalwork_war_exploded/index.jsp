@@ -8,7 +8,7 @@
     <title>新增商品界面</title>
 </head>
 <body>
-<s:form action="loginAction.action" method="POST">
+<s:form action="loginAction" method="POST">
     <s:textfield name="administratorEntity.loginname"/>
     <s:textfield name="administratorEntity.secret"/>
     <s:submit value="提交"/>

@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-${admin.username}
+${sessionScope.get("admin").loginname}
 </body>
 </html>
