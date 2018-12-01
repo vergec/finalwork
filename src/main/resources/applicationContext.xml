@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <context:property-placeholder location="classpath:/META-INF/db.properties"/>
+    <context:property-placeholder location="classpath:/db.properties"/>
     <!-- 使用annotation -->
     <context:annotation-config/>
     <!-- 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
@@ -38,7 +38,6 @@
         <property name="maxStatements" value="50"/>
         <!-- 当连接池里面的连接用完的时候,C3P0一下获取新的连接数 -->
         <property name="acquireIncrement" value="20"/>
-
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
