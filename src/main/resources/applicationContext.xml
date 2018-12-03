@@ -55,13 +55,19 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
                 <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-            </props>
+				<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ndt</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+			</props>
         </property>
-    </bean>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:com/ndt/entity/UserEntity.hbm.xml</value>
+				<value>classpath:com/ndt/entity/AdministratorEntity.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
 
-    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl"/>
 
     <bean id="administratorService" class="com.ndt.service.AdministratorService">
         <property name="administratorDAO" ref="administratorDAO"/>
@@ -74,24 +80,24 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <!--&lt;!&ndash; 注册事务通知 &ndash;&gt;-->
-    <!--<tx:advice id="myAdvice" transaction-manager="transactionManager">-->
-    <!--<tx:attributes>-->
-    <!--<tx:method name="add" isolation="DEFAULT" propagation="REQUIRED"/>-->
-    <!--<tx:method name="remove" isolation="DEFAULT" propagation="REQUIRED" />-->
-    <!--<tx:method name="modify" isolation="DEFAULT" propagation="REQUIRED" />-->
-    <!--<tx:method name="findAllStudents" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
-    <!--<tx:method name="findByNameAndAge" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
-    <!--</tx:attributes>-->
-    <!--</tx:advice>-->
+    <!-- 注册事务通知 -->
+    <tx:advice id="myAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+    <tx:method name="add" isolation="DEFAULT" propagation="REQUIRED"/>
+    <tx:method name="remove" isolation="DEFAULT" propagation="REQUIRED" />
+    <tx:method name="modify" isolation="DEFAULT" propagation="REQUIRED" />
+    <tx:method name="findAllStudents" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+    <tx:method name="findByNameAndAge" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+    </tx:attributes>
+    </tx:advice>
 
-    <!--&lt;!&ndash; aop配置切入点 &ndash;&gt;-->
-    <!--<aop:config>-->
-    <!--<aop:pointcut expression="execution(* *..Service.*.*(..))" id="myPointCut"/>-->
-    <!--<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointCut"/>-->
-    <!--</aop:config>-->
+    <!-- aop配置切入点 -->
+    <aop:config>
+		<aop:pointcut expression="execution(* *..Service.*.*(..))" id="myPointCut"/>
+		<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointCut"/>
+    </aop:config>
     <!--<start id="bean_exception_translation_post_processor" />-->
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>-->
     <!--<end id="bean_exception_translation_post_processor" />-->
 
 
