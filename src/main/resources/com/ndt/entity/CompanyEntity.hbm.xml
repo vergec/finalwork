@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ndt.entity.CompanyEntity" table="company" schema="ndt">
+        <id name="companyid" column="companyid"/>
+        <property name="loginname" column="loginname"/>
+        <property name="secret" column="secret"/>
+        <property name="companyname" column="companyname"/>
+        <property name="address" column="address"/>
+        <property name="phone" column="phone"/>
+        <property name="email" column="email"/>
+    </class>
+</hibernate-mapping>

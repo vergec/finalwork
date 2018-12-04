@@ -1,0 +1,185 @@
+/*盒子1*/
+.box_1{
+	width:960px;
+	margin:0px auto;
+	padding-top:10px;
+}
+.box_1 .box_1_l{
+	width:230px;
+	height:245px;
+	float:left;
+	text-align:center;
+}
+.box_1_l a{
+	display:block;
+	width:212px;
+	height:32px;
+	line-height:32px;
+	text-align:center;
+	background:url(../img/index/na_bg.png) no-repeat;
+	font-size:16px;
+	color:#fff;
+	margin-top:35px;
+	position:relative;
+	margin-left:15px;
+}
+.box_1_l .a_2{
+	margin-top:50px;
+}
+
+.box_1_l a img{
+	width:19px;
+	height:19px;
+	position:absolute;
+	left:148px;
+	top:6px;
+}
+.box_1 .banner{
+	width:705px;
+	height:245px;
+	float:right;
+}
+/*盒子1*/
+/*盒子3*/
+.box_3{
+	width:960px;
+	margin:0px auto;
+}
+.box_3 .box_3_l , .box_3 .box_3_r{
+	width:435px;
+	height:247px;
+	border:1px solid #999;
+}
+.box_3 .box_head{
+	width:435px;
+	height:35px;
+	line-height:35px;
+	font-size:18px;
+	color:#F3A01C;
+	text-align:left;
+	position:relative;
+	background:#045D97;
+}
+.box_3 .box_head span{
+	margin-left:5px;
+}
+.box_3 .box_head a{
+	display:block;
+	width:19px;
+	height:19px;
+	position:absolute;
+	right:12px;
+	top:7px;
+}
+.box_3 .box_head a img{
+	width:19px;
+	height:19px;
+	vertical-align:middle;
+}
+.box_3 .box_3_l{
+	float:left;
+}
+.box_3_l ul{
+	width:435px;
+	height:210px;
+	overflow:hidden;
+}
+.box_3_l ul li{
+	width:435px;
+	height:30px;
+	line-height:30px;
+	text-align:left;
+	position:relative;
+}
+.box_3_l ul li a{
+	font-size:13px;
+	color:#333;
+	margin-left:10px;
+}
+.box_3_l ul li span{
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	height:30px;
+	line-height:30px;
+	vertical-align:middle;
+	width:100px;
+	word-break:keep-all;/* 不换行 */
+	white-space:nowrap;/* 不换行 */
+	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;
+}
+.box_3_l ul li a:hover{
+	color:#045D97;
+}
+.box_3_l ul li img{
+	vertical-align:middle;
+}
+.box_3_l ul li em{
+	font-size:12px;
+	position:absolute;
+	right:20px;
+	top:3px;
+	color:#666;
+}
+.box_3 .box_3_r{
+	float:right;
+}
+
+.box_3_r .box16{
+	width:435px;
+}
+.box16 ul {
+	width: 435px;
+	height:210px;
+	overflow: hidden;
+}
+.box16 ul li {
+	width:435px;
+	height: 30px;
+	line-height:30px;
+	text-align:left;
+	position:relative;
+}
+.box16 ul li span{
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	width:290px;
+	height:30px;
+	line-height:30px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	margin-left:8px;
+	word-break:keep-all;/* 不换行 */
+}
+.box16 ul li span a {
+	font-size: 14px;
+	color: #333;
+	margin-left: 5px;
+	text-align:left;
+}
+.box16 ul li a:hover {
+	color:#045D97;
+}
+.box16 ul li em{
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	width:90px;
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+	color:#666;
+	position:absolute;
+	right:20px;
+	top:0px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:right;
+}
+/*盒子3*/
+
+

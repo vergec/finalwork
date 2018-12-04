@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ndt.entity.OrderEntity" table="order" schema="ndt">
+        <id name="orderid" column="orderid"/>
+        <property name="userid" column="userid"/>
+        <property name="companyid" column="companyid"/>
+        <property name="carid" column="carid"/>
+        <property name="departure" column="departure"/>
+        <property name="destination" column="destination"/>
+        <property name="time" column="time"/>
+        <property name="deliverytime" column="deliverytime"/>
+        <property name="finishtime" column="finishtime"/>
+        <property name="itemamount" column="itemamount"/>
+        <property name="itemsize" column="itemsize"/>
+        <property name="price" column="price"/>
+        <property name="status" column="status"/>
+        <property name="availabletime" column="availabletime"/>
+        <property name="availabletime1" column="availabletime1"/>
+    </class>
+</hibernate-mapping>

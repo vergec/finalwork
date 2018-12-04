@@ -5,14 +5,8 @@
 <hibernate-mapping>
 
     <class name="com.ndt.entity.AdministratorEntity" table="administrator" schema="ndt">
-        <id name="adminid">
-            <column name="adminid" sql-type="int(11)"/>
-        </id>
-        <property name="loginname">
-            <column name="loginname" sql-type="varchar(255)"/>
-        </property>
-        <property name="secret">
-            <column name="secret" sql-type="varchar(255)"/>
-        </property>
+        <id name="adminid" column="adminid"/>
+        <property name="loginname" column="loginname"/>
+        <property name="secret" column="secret"/>
     </class>
 </hibernate-mapping>

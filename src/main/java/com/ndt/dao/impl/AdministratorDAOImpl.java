@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Repository("userDao") //进行注入
+
 public class AdministratorDAOImpl implements AdministratorDAO {
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;

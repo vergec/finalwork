@@ -13,13 +13,83 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:property-placeholder location="classpath:/db.properties"/>
-    <!-- 使用annotation -->
-    <context:annotation-config/>
-    <!-- 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
-    <context:component-scan base-package="com.ndt.action"/>
-    <context:component-scan base-package="com.ndt.service"/>
-    <context:component-scan base-package="com.ndt.dao"/>
-    <context:component-scan base-package="com.ndt.entity"/>
+    <!-- 注解配置事务 -->
+    <tx:annotation-driven/>
+
+
+    <!--&lt;!&ndash; 使用annotation &ndash;&gt;-->
+    <!--<context:annotation-config/>-->
+    <!--&lt;!&ndash; 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.ndt.action"/>-->
+    <!--<context:component-scan base-package="com.ndt.service"/>-->
+    <!--<context:component-scan base-package="com.ndt.dao"/>-->
+    <!--<context:component-scan base-package="com.ndt.entity"/>-->
+
+    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="companyDAO" class="com.ndt.dao.impl.CompanyDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="administratorService" class="com.ndt.service.AdministratorService">
+        <property name="administratorDAO" ref="administratorDAO"/>
+    </bean>
+    <bean id="companyService" class="com.ndt.service.impl.CompanyServiceImpl">
+        <property name="companyDAO" ref="companyDAO"/>
+    </bean>
+
+    <bean id="loginAction" class="com.ndt.action.LoginAction" scope="prototype">
+        <property name="administratorService" ref="administratorService"/>
+        <property name="companyService" ref="companyService"/>
+    </bean>
+    <bean id="registerAction" class="com.ndt.action.RegisterAction" scope="prototype">
+        <property name="companyService" ref="companyService"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <!-- 可以加多个包 -->
+                <value>com.ndt.entity</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
+                <!--<prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
+                <!--<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>-->
+                <!--<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>-->
+                <!--<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>-->
+                <!--<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ndt</prop>-->
+                <!--<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>-->
+                <!--<prop key="hibernate.connection.autocommit">true</prop>-->
+                <prop key="hibernate.connection.autocommit">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ndt</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop><!-- 有表自动更新表结构，没有就创建表 -->
+            </props>
+        </property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:com/ndt/entity/AdministratorEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/CompanyEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/CarEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/EmployeeEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/EvaluationEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/OrderEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/CarEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/EvaluationEntity.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
     <!-- data connection setting -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${database.driverClassName}"/>
@@ -40,59 +110,29 @@
         <property name="acquireIncrement" value="20"/>
     </bean>
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan">
-            <list>
-                <!-- 可以加多个包 -->
-                <value>com.ndt.entity</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-                <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-            </props>
-        </property>
+     <!--定义事务管理器（声明式的事务）-->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="administratorService" class="com.ndt.service.AdministratorService">
-        <property name="administratorDAO" ref="administratorDAO"/>
-    </bean>
-
-    <bean id="loginAction" class="com.ndt.action.LoginAction" scope="prototype">
-        <property name="administratorService" ref="administratorService"/>
-    </bean>
-    <!-- 注册事务管理器 -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <!--&lt;!&ndash; 注册事务通知 &ndash;&gt;-->
-    <!--<tx:advice id="myAdvice" transaction-manager="transactionManager">-->
-    <!--<tx:attributes>-->
-    <!--<tx:method name="add" isolation="DEFAULT" propagation="REQUIRED"/>-->
-    <!--<tx:method name="remove" isolation="DEFAULT" propagation="REQUIRED" />-->
-    <!--<tx:method name="modify" isolation="DEFAULT" propagation="REQUIRED" />-->
-    <!--<tx:method name="findAllStudents" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
-    <!--<tx:method name="findByNameAndAge" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
-    <!--</tx:attributes>-->
+    <!-- 通知 -->
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--&lt;!&ndash; 传播行为 &ndash;&gt;-->
+            <!--<tx:method name="save*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="insert*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="add*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="create*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="register*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="delete*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="update*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="display*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="do*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="query*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>-->
+            <!--<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>-->
+        <!--</tx:attributes>-->
     <!--</tx:advice>-->
-
-    <!--&lt;!&ndash; aop配置切入点 &ndash;&gt;-->
-    <!--<aop:config>-->
-    <!--<aop:pointcut expression="execution(* *..Service.*.*(..))" id="myPointCut"/>-->
-    <!--<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointCut"/>-->
-    <!--</aop:config>-->
-    <!--<start id="bean_exception_translation_post_processor" />-->
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-    <!--<end id="bean_exception_translation_post_processor" />-->
-
-
 </beans>

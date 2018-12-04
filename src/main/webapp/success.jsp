@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+success
 ${sessionScope.get("admin").loginname}
 </body>
 </html>

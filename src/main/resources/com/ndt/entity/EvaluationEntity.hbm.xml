@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.ndt.entity.EvaluationEntity" table="evaluation" schema="ndt">
+        <id name="evaluationid" column="evaluationid"/>
+        <property name="userid" column="userid"/>
+        <property name="companyid" column="companyid"/>
+        <property name="orderid" column="orderid"/>
+        <property name="time" column="time"/>
+        <property name="title" column="title"/>
+        <property name="content" column="content"/>
+        <property name="photo1" column="photo1"/>
+        <property name="photo2" column="photo2"/>
+        <property name="photo3" column="photo3"/>
+    </class>
+</hibernate-mapping>

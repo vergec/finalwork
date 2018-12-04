@@ -1,48 +1,72 @@
 package com.ndt.action;
 
 import com.ndt.entity.AdministratorEntity;
+import com.ndt.entity.CompanyEntity;
 import com.ndt.service.AdministratorService;
+import com.ndt.service.impl.CompanyServiceImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 //@Controller
 //@Scope("prototype")
 public class LoginAction extends ActionSupport {
-	@Resource
-	private AdministratorService administratorService;
-	private AdministratorEntity administratorEntity;
+    @Resource
+    private AdministratorService administratorService;
+    private AdministratorEntity administratorEntity;
+    private CompanyServiceImpl companyService;
+    private CompanyEntity companyEntity;
+    @Override
+    public String execute() throws Exception {
+        System.out.println("executed");
+//		if(administratorService.login(administratorEntity)){
+//			Map session = ActionContext.getContext().getSession();
+//			session.put("admin",administratorEntity);
+//			return SUCCESS;
+//		} else {
+        int companyId=companyService.login(companyEntity);
+        if (companyId>0) {
+            ActionContext.getContext().getSession().put("companyId", companyId);
+            System.out.println(ActionContext.getContext().getSession().get("companyId")+"session测试");
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
+//		}
+    }
 
-	public AdministratorEntity getAdministratorEntity() {
-		return administratorEntity;
-	}
+    public CompanyEntity getCompanyEntity() {
+        return companyEntity;
+    }
 
-	public void setAdministratorEntity(AdministratorEntity administratorEntity) {
-		this.administratorEntity = administratorEntity;
-	}
+    public void setCompanyEntity(CompanyEntity companyEntity) {
+        this.companyEntity = companyEntity;
+    }
 
-	public AdministratorService getAdministratorService() {
-		return administratorService;
-	}
+    public void setCompanyService(CompanyServiceImpl companyService) {
+        this.companyService = companyService;
+    }
 
-	public void setAdministratorService(AdministratorService administratorService) {
-		this.administratorService = administratorService;
-	}
+    public CompanyServiceImpl getCompanyService() {
+        return companyService;
+    }
+    public AdministratorEntity getAdministratorEntity() {
+        return administratorEntity;
+    }
 
-	@Override
-	public String execute() throws Exception {
-		System.out.println("executed");
-		if(administratorService.login(administratorEntity)){
-			Map session = ActionContext.getContext().getSession();
-			session.put("admin",administratorEntity);
-			return SUCCESS;
-		} else {
-			return ERROR;
-		}
+    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+        this.administratorEntity = administratorEntity;
+    }
 
-	}
+    public AdministratorService getAdministratorService() {
+        return administratorService;
+    }
+
+    public void setAdministratorService(AdministratorService administratorService) {
+        this.administratorService = administratorService;
+    }
+
+
+
 }

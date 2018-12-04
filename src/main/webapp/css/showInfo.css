@@ -1,0 +1,43 @@
+#show {
+    text-align: center;
+    margin-top: 2%;
+}
+
+#form {
+    text-align: center;
+}
+
+#table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 5px 15px;
+}
+
+table.hoverTable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border: 1px #999999;
+    border-collapse: collapse;
+}
+
+table.hoverTable th {
+    background-color: #c3dde0;
+    padding: 8px;
+    border: 1px solid #a9c6c9;
+}
+
+table.hoverTable tr {
+    background-color: #d4e3e5;
+}
+
+table.hoverTable td {
+    padding: 8px;
+    border: 1px solid #a9c6c9;
+}
+
+table input {
+    border: 0;
+    BACKGROUND-COLOR: transparent;
+}
