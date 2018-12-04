@@ -1,10 +1,12 @@
 package com.ndt.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Table(name = "administrator", schema = "ndt", catalog = "")
-public class AdministratorEntity {
+@Table(name = "administrator", schema = "ndt")
+public class AdministratorEntity implements Serializable {
 	private int adminid;
 	private String loginname;
 	private String secret;
@@ -47,8 +49,8 @@ public class AdministratorEntity {
 		AdministratorEntity that = (AdministratorEntity) o;
 
 		if (adminid != that.adminid) return false;
-		if (loginname != null ? !loginname.equals(that.loginname) : that.loginname != null) return false;
-		if (secret != null ? !secret.equals(that.secret) : that.secret != null) return false;
+		if (!Objects.equals(loginname, that.loginname)) return false;
+		if (!Objects.equals(secret, that.secret)) return false;
 
 		return true;
 	}

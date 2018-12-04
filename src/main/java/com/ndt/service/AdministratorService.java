@@ -3,7 +3,11 @@ package com.ndt.service;
 import com.ndt.dao.AdministratorDAO;
 import com.ndt.entity.AdministratorEntity;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 public class AdministratorService {
+	@Resource(name = "administratorDAO")
 	private AdministratorDAO administratorDAO;
 
 	public AdministratorDAO getAdministratorDAO() {
@@ -14,7 +18,16 @@ public class AdministratorService {
 		this.administratorDAO = administratorDAO;
 	}
 
-	public boolean login(AdministratorEntity admin){
-		return administratorDAO.login(admin);
+	public boolean login(AdministratorEntity administratorEntity){
+		String hql = "from AdministratorEntity as admin where loginname = ?";
+		Object[] l = {administratorEntity.getLoginname()};
+		List<AdministratorEntity> list = administratorDAO.findByHQL(hql,l);
+		for(Object a:list){
+			AdministratorEntity b = (AdministratorEntity) a;
+			if(b.getSecret().equals(administratorEntity.getSecret())){
+				return true;
+			}
+		}
+		return false;
 	}
 }
