@@ -16,8 +16,6 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
 
     @Override
     public int login(CompanyEntity companyEntity) {
-        companyEntity.setLoginname(companyEntity.getLoginname());
-        companyEntity.setSecret(companyEntity.getSecret());
         if(this.getHibernateTemplate().findByExample(companyEntity).size()>0){
             companyId=getHibernateTemplate().findByExample(companyEntity).get(0).getCompanyid();
             return companyId;
@@ -63,38 +61,64 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     @Override
     public List<EmployeeEntity> findAllEmployee() {
 
-        return (List<EmployeeEntity>) this.getHibernateTemplate().find("from EmployeeEntity where companyid="+companyId);
+        return (List<EmployeeEntity>)
+                this.getHibernateTemplate().find("from EmployeeEntity where companyid="+companyId);
     }
 
     @Override
-    public CarEntity findAllCar() {
-        return this.getHibernateTemplate().get(CarEntity.class,companyId);
+    public List<CarEntity> findAllCar() {
+        return (List<CarEntity>) this.getHibernateTemplate().find("from CarEntity where companyid="+companyId);
+    }
+    //查找by id
+    @Override
+    public EmployeeEntity findEmployeeById(Integer id) {
+        List employeeEntities= this.getHibernateTemplate().find("from EmployeeEntity e where e.employeeid="+id);
+        if(employeeEntities==null||employeeEntities.size()==0){
+            return null;
+        }
+        return (EmployeeEntity) employeeEntities.get(0);
     }
 
+    @Override
+    public CarEntity findCarById(Integer id) {
+        List carEntitys=this.getHibernateTemplate().find("from CarEntity c where c.carid="+id);
+        if(carEntitys==null||carEntitys.size()==0){
+            return null;
+        }
+        return (CarEntity) carEntitys.get(0);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean deleteCar(CarEntity carEntity) {
         this.getHibernateTemplate().delete(carEntity);
         return true;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean deleteEmployee(EmployeeEntity employeeEntity) {
         this.getHibernateTemplate().delete(employeeEntity);
         return true;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean updateCar(CarEntity carEntity) {
+        carEntity.setCompanyid(companyId);
         this.getHibernateTemplate().update(carEntity);
         return true;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean updateEmployee(EmployeeEntity employeeEntity) {
+        employeeEntity.setCompanyid(companyId);
         this.getHibernateTemplate().update(employeeEntity);
         return true;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public boolean updateCompany(CompanyEntity companyEntity) {
         this.getHibernateTemplate().update(companyEntity);

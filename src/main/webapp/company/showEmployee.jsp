@@ -1,9 +1,3 @@
-  Created by IntelliJ IDEA.
-  User: KevinWang
-  Date: 2018/6/2
-  Time: 13:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <html>
@@ -22,16 +16,17 @@
         <th>操作</th>
         <th>重置</th>
     </tr>
-    <s:iterator value="employee" var="ly">
-        <form method="post" action="UpdateEmployee">
+    <s:iterator value="employeeEntities" var="ly">
+        <form method="post" action="updateEmployeeAction">
             <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
-                <td><input type="text" name="employeeid" value="${ly.employeeid}" size="10"></td>
-                <td><input type="text" name="name" value="${ly.name}" size="10"></td>
-                <td><input type="text" name="position" value="${ly.position}" size="10"></td>
-                <td><input type="text" name="phone" value="${ly.phone}" size="10"></td>
-                <td><input type="submit" value="修改">
+                <td><input type="text" name="employeeEntity.employeeid" value="${ly.employeeid}" size="10"></td>
+                <td><input type="text" name="employeeEntity.name" value="${ly.name}" size="10"></td>
+                <td><input type="text" name="employeeEntity.position" value="${ly.position}" size="10"></td>
+                <td><input type="text" name="employeeEntity.phone" value="${ly.phone}" size="10"></td>
+                <td>
+                    <input type="submit" value="修改">
                     <input type="button"
-                           onclick="window.location.href='DeleteEmployee?id=${ly.employeeid}'"
+                           onclick="window.location.href='deleteEmployeeAction?employeeEntity.employeeid=${ly.employeeid}'"
                            value="删除">
                 </td>
                 <td><input type="reset" value="重置"></td>

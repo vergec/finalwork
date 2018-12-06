@@ -14,7 +14,9 @@ public interface CompanyDAO {
     List<CompanyEntity> showCompanyEvaluation();
     CompanyEntity showCompany();
     List<EmployeeEntity> findAllEmployee();
-    CarEntity findAllCar();
+    List<CarEntity> findAllCar();
+    EmployeeEntity findEmployeeById(Integer id);
+    CarEntity findCarById(Integer id);
     boolean deleteCar(CarEntity carEntity);
     boolean deleteEmployee(EmployeeEntity employeeEntity);
     boolean updateCar(CarEntity carEntity);

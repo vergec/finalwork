@@ -13,19 +13,19 @@
 </head>
 <body>
 
-<form method="post" action="AddCar" id="form">
+<form method="post" action="addCarAction" id="form">
     <table id="table" class="hoverTable">
         <tr>
             <td>司机编号</td>
-            <td><input type="text" name="driverid"></td>
+            <td><input type="text" name="carEntity.driverid"></td>
         </tr>
         <tr>
             <td>车辆类型</td>
-            <td><input type="text" name="kind"></td>
+            <td><input type="text" name="carEntity.kind"></td>
         </tr>
         <tr>
             <td>车牌号码</td>
-            <td><input type="text" name="number"></td>
+            <td><input type="text" name="carEntity.number"></td>
         </tr>
     </table>
     <input type="submit" value="增加">

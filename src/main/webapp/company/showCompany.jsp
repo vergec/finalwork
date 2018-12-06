@@ -1,15 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="JavaBean.EvaluationBean" %>
-<%@ page import="DAO.CompanyDAO" %>
-<%@ page import="JavaBean.CompanyBean" %><%--
-  Created by IntelliJ IDEA.
-  User: KevinWang
-  Date: 2018/6/2
-  Time: 13:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/showInfo.css">
@@ -17,10 +7,6 @@
     <title>Title</title>
 </head>
 <body>
-<%
-    CompanyBean arrayList = new CompanyDAO().getCompany((Integer) session.getAttribute("companyid"));
-    request.setAttribute("arrayList", arrayList);
-%>
 <table id="table" class="hoverTable">
     <tr>
         <th>公司编号</th>
@@ -33,19 +19,21 @@
         <th>操作</th>
         <th>重置</th>
     </tr>
-        <form method="post" action="UpdateCompany">
+        <s:iterator value="companyEntity" var="ly">
+        <form method="post" action="updateCompanyAction">
             <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
-                <td><input type="text" name="companyid" value="${arrayList.companyid}" size="10" readOnly="true"></td>
-                <td><input type="text" name="loginname" value="${arrayList.loginname}" size="10"></td>
-                <td><input type="text" name="secret" value="${arrayList.secret}" size="10"></td>
-                <td><input type="text" name="companyname" value="${arrayList.companyname}" size="10" readOnly="true"></td>
-                <td><input type="text" name="address" value="${arrayList.address}" size="10"></td>
-                <td><input type="text" name="phone" value="${arrayList.phone}" size="10"></td>
-                <td><input type="text" name="email" value="${arrayList.email}" size="10"></td>
+                <td><input type="text" name="companyEntity.companyid" value="${ly.companyid}" size="10" readOnly="true"></td>
+                <td><input type="text" name="companyEntity.loginname" value="${ly.loginname}" size="10"></td>
+                <td><input type="text" name="companyEntity.secret" value="${ly.secret}" size="10"></td>
+                <td><input type="text" name="companyEntity.companyname" value="${ly.companyname}" size="10" readOnly="true"></td>
+                <td><input type="text" name="companyEntity.address" value="${ly.address}" size="10"></td>
+                <td><input type="text" name="companyEntity.phone" value="${ly.phone}" size="10"></td>
+                <td><input type="text" name="companyEntity.email" value="${ly.email}" size="10"></td>
                 <td><input type="submit" value="修改"></td>
                 <td><input type="reset" value="重置"></td>
             </tr>
         </form>
+        </s:iterator>
 </table>
 </body>
 </html>

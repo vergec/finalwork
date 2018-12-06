@@ -5,9 +5,11 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 	<constant name="struts.objectFactory" value="spring" />
     <constant name="struts.devMode" value="true" />
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="company" namespace="/" extends="struts-default">
+
 		<action name="loginAction" class="loginAction">
 			<result name="success">/company.jsp</result>
 			<result name="error">/login.jsp</result>
@@ -16,5 +18,41 @@
 			<result name="success">/login.jsp</result>
 			<result name="error">/register.jsp</result>
 		</action>
+
+		<action name="*EmployeeAction" class="employeeAction" method="{1}">
+			<result name="list">/company/showEmployee.jsp</result>
+			<result name="delete" type="redirect">listEmployeeAction.action</result>
+			<result name="update" type="redirect">listEmployeeAction.action</result>
+			<allowed-methods>delete,update</allowed-methods>
+		</action>
+
+		<action name="*CarAction" class="carAction" method="{1}">
+			<result name="list">/company/showCar.jsp</result>
+			<result name="delete" type="redirect">listCarAction.action</result>
+			<result name="update" type="redirect">listCarAction.action</result>
+			<allowed-methods>delete,update</allowed-methods>
+		</action>
+
+		<action name="*CompanyAction" class="companyAction" method="{1}">
+			<result name="list">/company/showCompany.jsp</result>
+			<result name="update" type="redirect">listCompanyAction.action</result>
+			<allowed-methods>update</allowed-methods>
+		</action>
 	</package>
+
+	<package name="add" namespace="/company" extends="struts-default">
+		<action name="addEmployeeAction" class="employeeAction" method="add">
+			<result name="add" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">listEmployeeAction</param>
+			</result>
+		</action>
+		<action name="addCarAction" class="carAction" method="add">
+			<result name="add" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">listCarAction</param>
+			</result>
+		</action>
+	</package>
+
 </struts>

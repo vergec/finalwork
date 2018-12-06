@@ -1,6 +1,7 @@
 package com.ndt.service.impl;
 
 import com.ndt.dao.CompanyDAO;
+import com.ndt.entity.CarEntity;
 import com.ndt.entity.CompanyEntity;
 import com.ndt.entity.EmployeeEntity;
 import com.ndt.service.CompanyService;
@@ -15,12 +16,57 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDAO.findAllEmployee();
     }
 
+    @Override
+    public List<CarEntity> listCarEntities() {
+        return companyDAO.findAllCar();
+    }
+
+    @Override
+    public CompanyEntity listCompanyEntities() {
+        return companyDAO.showCompany();
+    }
+
     public int login(CompanyEntity companyEntity){
         return companyDAO.login(companyEntity);
     }
 
     public boolean register(CompanyEntity companyEntity){
         return companyDAO.register(companyEntity);
+    }
+
+    @Override
+    public void deleteCar(Integer id) {
+        companyDAO.deleteCar(companyDAO.findCarById(id));
+    }
+
+    @Override
+    public void deleteEmployee(Integer id) {
+        companyDAO.deleteEmployee(companyDAO.findEmployeeById(id));
+    }
+
+    @Override
+    public void updateEmployee(EmployeeEntity employeeEntity) {
+        companyDAO.updateEmployee(employeeEntity);
+    }
+
+    @Override
+    public void updateCar(CarEntity carEntity) {
+        companyDAO.updateCar(carEntity);
+    }
+
+    @Override
+    public void updateCompany(CompanyEntity companyEntity) {
+        companyDAO.updateCompany(companyEntity);
+    }
+
+    @Override
+    public void addEmployee(EmployeeEntity employeeEntity) {
+        companyDAO.addEmployee(employeeEntity);
+    }
+
+    @Override
+    public void addCar(CarEntity carEntity) {
+        companyDAO.addCar(carEntity);
     }
 
     public CompanyDAO getCompanyDAO() {

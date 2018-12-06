@@ -20,11 +20,6 @@ public class LoginAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
         System.out.println("executed");
-//		if(administratorService.login(administratorEntity)){
-//			Map session = ActionContext.getContext().getSession();
-//			session.put("admin",administratorEntity);
-//			return SUCCESS;
-//		} else {
         int companyId=companyService.login(companyEntity);
         if (companyId>0) {
             ActionContext.getContext().getSession().put("companyId", companyId);
@@ -33,7 +28,6 @@ public class LoginAction extends ActionSupport {
         } else {
             return ERROR;
         }
-//		}
     }
 
     public CompanyEntity getCompanyEntity() {

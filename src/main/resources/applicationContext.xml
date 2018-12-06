@@ -25,26 +25,32 @@
     <!--<context:component-scan base-package="com.ndt.dao"/>-->
     <!--<context:component-scan base-package="com.ndt.entity"/>-->
 
-    <bean id="administratorDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
+    <!--DAO-->
     <bean id="companyDAO" class="com.ndt.dao.impl.CompanyDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
-    <bean id="administratorService" class="com.ndt.service.AdministratorService">
-        <property name="administratorDAO" ref="administratorDAO"/>
-    </bean>
+    <!--Service-->
     <bean id="companyService" class="com.ndt.service.impl.CompanyServiceImpl">
         <property name="companyDAO" ref="companyDAO"/>
     </bean>
-
+    <!--Action-->
     <bean id="loginAction" class="com.ndt.action.LoginAction" scope="prototype">
-        <property name="administratorService" ref="administratorService"/>
         <property name="companyService" ref="companyService"/>
     </bean>
+
     <bean id="registerAction" class="com.ndt.action.RegisterAction" scope="prototype">
+        <property name="companyService" ref="companyService"/>
+    </bean>
+
+    <bean id="employeeAction" class="com.ndt.action.EmployeeAction" scope="prototype">
+        <property name="companyService" ref="companyService"/>
+    </bean>
+
+    <bean id="carAction" class="com.ndt.action.CarAction" scope="prototype">
+        <property name="companyService" ref="companyService"/>
+    </bean>
+
+    <bean id="companyAction" class="com.ndt.action.CompanyAction" scope="prototype">
         <property name="companyService" ref="companyService"/>
     </bean>
 
@@ -59,19 +65,10 @@
 
         <property name="hibernateProperties">
             <props>
-                <!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
-                <!--<prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
-                <!--<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>-->
-                <!--<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>-->
-                <!--<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>-->
-                <!--<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ndt</prop>-->
-                <!--<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>-->
-                <!--<prop key="hibernate.connection.autocommit">true</prop>-->
                 <prop key="hibernate.connection.autocommit">true</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ndt</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop><!-- 有表自动更新表结构，没有就创建表 -->
             </props>

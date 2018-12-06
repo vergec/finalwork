@@ -12,19 +12,19 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="AddEmployee" id="form">
+<form method="post" action="addEmployeeAction" id="form">
     <table id="table" class="hoverTable">
         <tr>
             <td>员工姓名</td>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="employeeEntity.name"></td>
         </tr>
         <tr>
             <td>员工职位</td>
-            <td><input type="text" name="position"></td>
+            <td><input type="text" name="employeeEntity.position"></td>
         </tr>
         <tr>
             <td>员工电话</td>
-            <td><input type="text" name="phone"></td>
+            <td><input type="text" name="employeeEntity.phone"></td>
         </tr>
     </table>
     <input type="submit" value="增加">
