@@ -49,9 +49,10 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     }
     //查找
     @Override
-    public List<CompanyEntity> showCompanyEvaluation() {
-        return null;
+    public List<CompanyEntity> showAllCompany() {
+        return (List<CompanyEntity>) this.getHibernateTemplate().find("from CompanyEntity");
     }
+
 
     @Override
     public CompanyEntity showCompany() {

@@ -11,7 +11,7 @@ public interface CompanyDAO {
     boolean register(CompanyEntity companyEntity);
     boolean addEmployee(EmployeeEntity employeeEntity);
     boolean addCar(CarEntity carEntity);
-    List<CompanyEntity> showCompanyEvaluation();
+    List<CompanyEntity> showAllCompany();
     CompanyEntity showCompany();
     List<EmployeeEntity> findAllEmployee();
     List<CarEntity> findAllCar();

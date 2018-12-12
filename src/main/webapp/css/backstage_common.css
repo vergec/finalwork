@@ -5,36 +5,13 @@
     height: 100%;
 }
 
-
-#nav {
-    float: left;
-    font-family: Georgia, serif;
-    font-size: 18px;
-
+#container{
+    position: relative;
+    top: 50px;
 }
 
 #frame {
-    float: left;
-}
-
-span {
-    font-size: 22px;
-    color: white;
-    background-color: #F75000;
-    display: inline-block;
-    width: 200px;
-    height: 50px;
-    text-align: center;
-    font-weight: bold;
-    line-height: 50px;
-}
-
-#nav a {
-    color: white;
-    width: 200px;
-    height: 50px;
-    display: inline-block;
-    background: #FF8F59;
-    text-align: center;
-    line-height: 50px;
+    position:absolute;
+    left: 200px;
+    top: 1px;
 }
