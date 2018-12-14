@@ -21,12 +21,22 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDAO.findAllCar();
     }
 
-    @Override
-    public CompanyEntity listCompanyEntities() {
+	@Override
+	public List<CompanyEntity> listCompanyEntities() {
+		return companyDAO.showAllCompany();
+	}
+
+	@Override
+    public CompanyEntity listCompanyEntity() {
         return companyDAO.showCompany();
     }
 
-    public int login(CompanyEntity companyEntity){
+	@Override
+	public CompanyEntity findCompanyEntity(int id) {
+		return companyDAO.findCompany(id);
+	}
+
+	public int login(CompanyEntity companyEntity){
         return companyDAO.login(companyEntity);
     }
 

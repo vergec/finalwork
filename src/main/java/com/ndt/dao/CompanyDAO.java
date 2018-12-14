@@ -13,6 +13,7 @@ public interface CompanyDAO {
     boolean addCar(CarEntity carEntity);
     List<CompanyEntity> showAllCompany();
     CompanyEntity showCompany();
+	CompanyEntity findCompany(int id);
     List<EmployeeEntity> findAllEmployee();
     List<CarEntity> findAllCar();
     EmployeeEntity findEmployeeById(Integer id);

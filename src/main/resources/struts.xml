@@ -54,5 +54,10 @@
 			</result>
 		</action>
 	</package>
+	<!--<package name="user" namespace="/user" extends="struts-default">-->
+		<!--<action name="userLoginAction" class="com.ndt.action.UserLoginAction" method="execute">-->
+			<!--<result name="userLoginSuccess">/user.jsp</result>-->
+		<!--</action>-->
+	<!--</package>-->
 
 </struts>

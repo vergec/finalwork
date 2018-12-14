@@ -3,32 +3,47 @@ package com.ndt.dao.impl;
 import com.ndt.dao.AGenericHibernateDao;
 import com.ndt.dao.UserDAO;
 import com.ndt.entity.UserEntity;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("useDAO")
 public class UserDAOImpl extends AGenericHibernateDao<UserEntity,Integer> implements UserDAO {
+
 	@Override
-	public void delete(Integer integer) {
-		super.delete(integer);
+	public void deleteUser(UserEntity userEntity) {
+		super.delete(userEntity);
 	}
 
 	@Override
-	public UserEntity findById(Integer integer) {
-		return super.findById(integer);
+	public UserEntity findUserById(Integer id) {
+		return super.findById(id);
 	}
 
 	@Override
-	public List<UserEntity> findByHQL(String strHQL) {
+	public List<UserEntity> findUsersByName(String username) {
+		String strHQL = "from UserEntity as user where loginname='"+username+"'";
 		return super.findByHQL(strHQL);
 	}
 
 	@Override
-	public UserEntity findByHql(String strHQL) {
+	public List<UserEntity> findAllUser() {
+		return null;
+	}
+
+	@Override
+	public UserEntity findUserByName(String username) {
+		String strHQL = "from UserEntity as user where loginname='"+username+"'";
 		return super.findByHql(strHQL);
 	}
 
 	@Override
-	public void update(UserEntity entity) {
-		super.update(entity);
+	public UserEntity creatUser(UserEntity userEntity) {
+		return super.create(userEntity);
+	}
+
+	@Override
+	public void updateUser(UserEntity userEntity) {
+		super.update(userEntity);
 	}
 }

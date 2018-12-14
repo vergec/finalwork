@@ -8,7 +8,7 @@ public class CompanyAction {
     private CompanyService companyService;
 
     public String list(){
-        companyEntity=companyService.listCompanyEntities();
+        companyEntity=companyService.listCompanyEntity();
         return "list";
     }
     public String update(){

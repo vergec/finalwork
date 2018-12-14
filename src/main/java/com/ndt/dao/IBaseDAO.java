@@ -8,7 +8,7 @@ public interface IBaseDAO<T extends Serializable, ID extends Serializable> {
 
     T create(final T entity);
 
-    void delete(final ID id);
+    void delete(final T entity);
 
     void update(final T entity);
 
@@ -22,11 +22,11 @@ public interface IBaseDAO<T extends Serializable, ID extends Serializable> {
 
 	List<T> findByHQL(final String strHQL);
 
-    PageBean findByPage(final String strHQL, final int currentPage, final int pageSize, final Object[] params);
+    PageBean findByPage(final String strHQL, final int currentPage, final int pageSize);
 	/**
 	 * 获得总记录数
 	 */
 	T getTotalCount(Class<T> entityClass);
 
-	T getPageCount(String hql,Object[] params);
+	int getPageCount(String hql,Object[] params);
 }

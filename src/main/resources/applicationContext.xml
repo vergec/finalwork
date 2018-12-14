@@ -15,15 +15,13 @@
     <context:property-placeholder location="classpath:/db.properties"/>
     <!-- 注解配置事务 -->
     <tx:annotation-driven/>
-
-
     <!--&lt;!&ndash; 使用annotation &ndash;&gt;-->
-    <!--<context:annotation-config/>-->
-    <!--&lt;!&ndash; 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 &ndash;&gt;-->
-    <!--<context:component-scan base-package="com.ndt.action"/>-->
-    <!--<context:component-scan base-package="com.ndt.service"/>-->
-    <!--<context:component-scan base-package="com.ndt.dao"/>-->
-    <!--<context:component-scan base-package="com.ndt.entity"/>-->
+    <context:annotation-config/>
+    <!-- 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+    <context:component-scan base-package="com.ndt.action"/>
+    <context:component-scan base-package="com.ndt.service.*"/>
+    <context:component-scan base-package="com.ndt.dao.*"/>
+    <context:component-scan base-package="com.ndt.entity"/>
 
     <!--DAO-->
     <bean id="companyDAO" class="com.ndt.dao.impl.CompanyDAOImpl">
@@ -80,10 +78,9 @@
                 <value>classpath:com/ndt/entity/CarEntity.hbm.xml</value>
                 <value>classpath:com/ndt/entity/EmployeeEntity.hbm.xml</value>
                 <value>classpath:com/ndt/entity/EvaluationEntity.hbm.xml</value>
-                <value>classpath:com/ndt/entity/OrderEntity.hbm.xml</value>
-                <value>classpath:com/ndt/entity/CarEntity.hbm.xml</value>
-                <value>classpath:com/ndt/entity/EvaluationEntity.hbm.xml</value>
-            </list>
+                <value>classpath:com/ndt/entity/UserEntity.hbm.xml</value>
+				<value>classpath:com/ndt/entity/OrderEntity.hbm.xml</value>
+			</list>
         </property>
     </bean>
 

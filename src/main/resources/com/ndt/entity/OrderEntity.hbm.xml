@@ -4,21 +4,54 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.ndt.entity.OrderEntity" table="order" schema="ndt">
-        <id name="orderid" column="orderid"/>
-        <property name="userid" column="userid"/>
-        <property name="companyid" column="companyid"/>
-        <property name="carid" column="carid"/>
-        <property name="departure" column="departure"/>
-        <property name="destination" column="destination"/>
-        <property name="time" column="time"/>
-        <property name="deliverytime" column="deliverytime"/>
-        <property name="finishtime" column="finishtime"/>
-        <property name="itemamount" column="itemamount"/>
-        <property name="itemsize" column="itemsize"/>
-        <property name="price" column="price"/>
-        <property name="status" column="status"/>
-        <property name="availabletime" column="availabletime"/>
-        <property name="availabletime1" column="availabletime1"/>
-    </class>
+	<class name="com.ndt.entity.OrderEntity" table="orderform" schema="ndt">
+		<id name="orderid">
+			<column name="orderid" sql-type="int(11)"/>
+		</id>
+		<property name="userid">
+			<column name="userid" sql-type="int(11)"/>
+		</property>
+		<property name="companyid">
+			<column name="companyid" sql-type="varchar(255)"/>
+		</property>
+		<property name="carid">
+			<column name="carid" sql-type="int(11)"/>
+		</property>
+		<property name="departure">
+			<column name="departure" sql-type="varchar(255)"/>
+		</property>
+		<property name="destination">
+			<column name="destination" sql-type="varchar(255)"/>
+		</property>
+		<property name="time">
+			<column name="time" sql-type="timestamp"/>
+		</property>
+		<property name="deliverytime">
+			<column name="deliverytime" sql-type="datetime" />
+		</property>
+		<property name="finishtime">
+			<column name="finishtime" sql-type="datetime"/>
+		</property>
+		<property name="itemamount">
+			<column name="itemamount" sql-type="int(10)"/>
+		</property>
+		<property name="itemsize">
+			<column name="itemsize" sql-type="double(10)" precision="10"/>
+		</property>
+		<property name="price">
+			<column name="price" sql-type="double(10,2)" precision="10" scale="2"/>
+		</property>
+		<property name="status">
+			<column name="status" sql-type="varchar(255)"/>
+		</property>
+		<property name="availabletime">
+			<column name="availabletime" sql-type="datetime(6)"/>
+		</property>
+		<property name="availabletime1">
+			<column name="availabletime1" sql-type="datetime(6)"/>
+		</property>
+		<property name="title">
+			<column name="title" sql-type="varchar(255)"/>
+		</property>
+	</class>
 </hibernate-mapping>

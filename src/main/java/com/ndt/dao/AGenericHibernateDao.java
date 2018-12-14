@@ -8,12 +8,12 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public abstract class AGenericHibernateDao<T extends Serializable, ID extends Serializable> implements IBaseDAO<T, ID> {
+
 	private Class<T> persistentClass;
 	@Autowired
 	SessionFactory sessionFactory;
@@ -28,32 +28,19 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	public T create(T entity) {
+	public T create(T entity) throws RuntimeException{
 		Session session = sessionFactory.openSession();
 		Transaction trans = null;
-		try {
-			trans = session.beginTransaction();
-			session.save(entity);
-			trans.commit();
-			return entity;
-		} catch (RuntimeException ex) {
-			ex.printStackTrace();
-			if (trans != null)
-				trans.rollback();
-			return null;
-		} finally {
-			session.close();
-		}
+		trans = session.beginTransaction();
+		session.save(entity);
+		trans.commit();
+		session.close();
+		return entity;
 	}
 
-	public T findById(ID id) {
+	public T findById(ID id) throws RuntimeException{
 		Session session = sessionFactory.openSession();
-		try {
-			return session.get(this.persistentClass, id);
-		} catch (RuntimeException ex) {
-			ex.printStackTrace();
-			return null;
-		}
+		return session.get(this.persistentClass, id);
 	}
 
 	@Override
@@ -61,45 +48,30 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(strHQL);
 		List list = query.list();
-		if(list.get(0)!=null){
+		if(list.size()>0){
 			return (T)list.get(0);
 		} else {
 			return null;
 		}
 	}
 
-	public void delete(ID id) {
+	public void delete(T entity) throws RuntimeException{
 		Session session = sessionFactory.openSession();
 		Transaction trans = null;
-		try {
-			trans = session.beginTransaction();
-			session.delete(findById(id));
-			trans.commit();
-		} catch (RuntimeException ex) {
-			ex.printStackTrace();
-			if (trans != null)
-				trans.rollback();
-		} finally {
-			session.close();
-		}
+		trans = session.beginTransaction();
+		session.delete(entity);
+		trans.commit();
+		session.close();
 	}
 
 
-	public void update(T entity) {
+	public void update(T entity) throws RuntimeException{
 		Session session = sessionFactory.openSession();
 		Transaction trans = null;
-		try {
-			trans = session.beginTransaction();
-			session.update(entity);
-			trans.commit();
-		} catch (RuntimeException ex) {
-			ex.printStackTrace();
-			if (trans != null)
-				trans.rollback();
-		} finally {
-			session.close();
-		}
-
+		trans = session.beginTransaction();
+		session.update(entity);
+		trans.commit();
+		session.close();
 	}
 
 
@@ -107,17 +79,14 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		return findByCriteria();
 	}
 
-	private Query getQueryWithParams(Session session, String strHQL, Object[] params){
+	private Query getQueryWithParams(Session session, String strHQL){
 		Query query = session.createQuery(strHQL);
-		for (int i = 0; i < params.length; i++) {
-			query.setParameter(i, params[i]);
-		}
 		return query;
 	}
 
 	public List<T> findByHQL(String strHQL, Object[] params) {
 		Session session = sessionFactory.openSession();
-		Query query = getQueryWithParams(session,strHQL,params);
+		Query query = getQueryWithParams(session,strHQL);
 		session.close();
 		return query.list();
 	}
@@ -128,14 +97,14 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		session.close();
 		return query.list();
 	}
-	public PageBean findByPage(String strHQL, int currentPage, int pageSize, Object[] params) {
+	public PageBean findByPage(String strHQL, int currentPage, int pageSize) {
 		// 步骤1：创建一个PageBean对象
 		PageBean pageBean = new PageBean();
 		// 步骤2：获取一个数据库链接session
 		Session session = sessionFactory.openSession();
 		// 步骤3：执行HQL语句完成查询动获取本页内的固定条数的数据
 		// 步骤4：设置查询条件-参数条件
-		Query query = getQueryWithParams(session,strHQL,params);
+		Query query = getQueryWithParams(session,strHQL);
 		// 步骤5：设置查询条件-每页的启始记录下标 (当前也是-1)*每页个数
 		query.setFirstResult((currentPage - 1) * pageSize);
 		// 步骤6：设置查询条件-控制查询记录的个数
@@ -146,9 +115,10 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		strHQL = "select count(*) " + strHQL.substring(strHQL.toLowerCase().indexOf("from"));
 		// 步骤9：执行HQL语句完成查询动获取本页内的固定条数的数据
 		// 步骤10：设置查询条件-参数条件
-		query=getQueryWithParams(session,strHQL,params);
+		query=getQueryWithParams(session,strHQL);
 		// 步骤11：获取查询结果并且赋值给pageBean对象的totalRows
 		pageBean.setTotalRows(Integer.parseInt(query.uniqueResult().toString()));
+//		pageBean.setTotalPages((int)Math.floor(Double.valueOf(query.uniqueResult().toString())/pageSize));
 		// 关闭数据库连接
 		session.close();
 		// 步骤12：为剩余的pageBean属性赋值
@@ -172,8 +142,11 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 	}
 
 	@Override
-	public T getPageCount(String hql, Object[] params) {
+	public int getPageCount(String hql, Object[] params) {
 		//TODO
-		return null;
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery(hql);
+		List list = query.list();
+		return (int)Math.floor(list.size()/(double)params[0]);
 	}
 }

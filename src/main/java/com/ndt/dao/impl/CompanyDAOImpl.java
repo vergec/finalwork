@@ -48,18 +48,23 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
         return true;
     }
     //查找
-    @Override
-    public List<CompanyEntity> showAllCompany() {
-        return (List<CompanyEntity>) this.getHibernateTemplate().find("from CompanyEntity");
-    }
+	@Override
+	public List<CompanyEntity> showAllCompany() {
+		return (List<CompanyEntity>) this.getHibernateTemplate().find("from CompanyEntity");
+	}
 
 
-    @Override
+	@Override
     public CompanyEntity showCompany() {
         return this.getHibernateTemplate().get(CompanyEntity.class,companyId);
     }
 
-    @Override
+	@Override
+	public CompanyEntity findCompany(int id) {
+		return (CompanyEntity)this.getHibernateTemplate().find("from CompanyEntity where companyid="+id).get(0);
+	}
+
+	@Override
     public List<EmployeeEntity> findAllEmployee() {
 
         return (List<EmployeeEntity>)

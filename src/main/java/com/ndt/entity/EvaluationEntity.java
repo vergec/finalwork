@@ -1,12 +1,13 @@
 package com.ndt.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
 @Table(name = "evaluation", schema = "ndt", catalog = "")
-public class EvaluationEntity {
+public class EvaluationEntity implements Serializable {
     private int evaluationid;
     private int userid;
     private int companyid;

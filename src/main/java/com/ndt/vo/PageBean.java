@@ -18,15 +18,6 @@ public class PageBean {
 		this.totalRows = totalRows;
 	}
 	public int getTotalPages() {
-		/*
-		 * 
-		 * ��ҳ�㷨��
-		 * if(������%ÿҳ��ʾ����==0){
-		 *     ������/ÿҳ��ʾ����
-		 * }else{
-		 * 	   ������/ÿҳ��ʾ����+1
-		 * }
-		 * */ 
 		return totalRows%pageSize==0?totalRows/pageSize:totalRows/pageSize+1;
 	}
 	public void setTotalPages(int totalPages) {

@@ -1,9 +1,12 @@
 package com.ndt.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Component
 @Entity
 @Table(name = "user", schema = "ndt")
 public class UserEntity implements Serializable {

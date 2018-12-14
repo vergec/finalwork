@@ -9,7 +9,9 @@ import java.util.List;
 public interface CompanyService {
     List<EmployeeEntity> listEmployeeEntities();
     List<CarEntity> listCarEntities();
-    CompanyEntity listCompanyEntities();
+    List<CompanyEntity> listCompanyEntities();
+    CompanyEntity listCompanyEntity();
+	CompanyEntity findCompanyEntity(int id);
     int login(CompanyEntity companyEntity);
     boolean register(CompanyEntity companyEntity);
     void deleteCar(Integer id);

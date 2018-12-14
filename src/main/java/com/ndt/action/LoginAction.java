@@ -6,11 +6,13 @@ import com.ndt.service.AdministratorService;
 import com.ndt.service.impl.CompanyServiceImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
-//@Controller
-//@Scope("prototype")
+@Controller
+@Scope("prototype")
 public class LoginAction extends ActionSupport {
     @Resource
     private AdministratorService administratorService;
@@ -30,36 +32,37 @@ public class LoginAction extends ActionSupport {
         }
     }
 
-    public CompanyEntity getCompanyEntity() {
-        return companyEntity;
-    }
+	public CompanyEntity getCompanyEntity() {
+		return companyEntity;
+	}
 
-    public void setCompanyEntity(CompanyEntity companyEntity) {
-        this.companyEntity = companyEntity;
-    }
+	public void setCompanyEntity(CompanyEntity companyEntity) {
+		this.companyEntity = companyEntity;
+	}
 
-    public void setCompanyService(CompanyServiceImpl companyService) {
-        this.companyService = companyService;
-    }
+	public void setCompanyService(CompanyServiceImpl companyService) {
+		this.companyService = companyService;
+	}
 
-    public CompanyServiceImpl getCompanyService() {
-        return companyService;
-    }
-    public AdministratorEntity getAdministratorEntity() {
-        return administratorEntity;
-    }
+	public CompanyServiceImpl getCompanyService() {
+		return companyService;
+	}
 
-    public void setAdministratorEntity(AdministratorEntity administratorEntity) {
-        this.administratorEntity = administratorEntity;
-    }
+	public AdministratorEntity getAdministratorEntity() {
+		return administratorEntity;
+	}
 
-    public AdministratorService getAdministratorService() {
-        return administratorService;
-    }
+	public void setAdministratorEntity(AdministratorEntity administratorEntity) {
+		this.administratorEntity = administratorEntity;
+	}
 
-    public void setAdministratorService(AdministratorService administratorService) {
-        this.administratorService = administratorService;
-    }
+	public AdministratorService getAdministratorService() {
+		return administratorService;
+	}
+
+	public void setAdministratorService(AdministratorService administratorService) {
+		this.administratorService = administratorService;
+	}
 
 
 
