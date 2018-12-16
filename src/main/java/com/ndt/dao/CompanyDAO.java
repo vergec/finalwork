@@ -16,10 +16,12 @@ public interface CompanyDAO {
 	CompanyEntity findCompany(int id);
     List<EmployeeEntity> findAllEmployee();
     List<CarEntity> findAllCar();
+    CompanyEntity findCompanyEntityById(Integer id);
     EmployeeEntity findEmployeeById(Integer id);
     CarEntity findCarById(Integer id);
     boolean deleteCar(CarEntity carEntity);
     boolean deleteEmployee(EmployeeEntity employeeEntity);
+    boolean deleteCompany(CompanyEntity companyEntity);
     boolean updateCar(CarEntity carEntity);
     boolean updateEmployee(EmployeeEntity employeeEntity);
     boolean updateCompany(CompanyEntity companyEntity);

@@ -14,6 +14,7 @@ public interface CompanyService {
 	CompanyEntity findCompanyEntity(int id);
     int login(CompanyEntity companyEntity);
     boolean register(CompanyEntity companyEntity);
+    void deleteCompany(Integer id);
     void deleteCar(Integer id);
     void deleteEmployee(Integer id);
     void updateEmployee(EmployeeEntity employeeEntity);

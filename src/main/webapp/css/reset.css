@@ -46,12 +46,14 @@ abbr, acronym {
 	visibility: hidden;
 }
 .clearfix {
+	left: 200px;
 	display: inline-block;
 }
 * html .clearfix {
 	height: 1%;
 }
 .clearfix {
+	right: 100px;
 	display: block;
 }
 /*通用父子盒子嵌套浮动问题解决，结束*/

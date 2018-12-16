@@ -75,11 +75,21 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     public List<CarEntity> findAllCar() {
         return (List<CarEntity>) this.getHibernateTemplate().find("from CarEntity where companyid="+companyId);
     }
+
+    @Override
+    public CompanyEntity findCompanyEntityById(Integer id) {
+        List CompanyEntities= this.getHibernateTemplate().find("from CompanyEntity c where c.companyid="+id);
+        if(CompanyEntities.size() == 0){
+            return null;
+        }
+        return (CompanyEntity) CompanyEntities.get(0);
+    }
+
     //查找by id
     @Override
     public EmployeeEntity findEmployeeById(Integer id) {
         List employeeEntities= this.getHibernateTemplate().find("from EmployeeEntity e where e.employeeid="+id);
-        if(employeeEntities==null||employeeEntities.size()==0){
+        if(employeeEntities.size() == 0){
             return null;
         }
         return (EmployeeEntity) employeeEntities.get(0);
@@ -88,7 +98,7 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     @Override
     public CarEntity findCarById(Integer id) {
         List carEntitys=this.getHibernateTemplate().find("from CarEntity c where c.carid="+id);
-        if(carEntitys==null||carEntitys.size()==0){
+        if(carEntitys.size() == 0){
             return null;
         }
         return (CarEntity) carEntitys.get(0);
@@ -105,6 +115,13 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     @Override
     public boolean deleteEmployee(EmployeeEntity employeeEntity) {
         this.getHibernateTemplate().delete(employeeEntity);
+        return true;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public boolean deleteCompany(CompanyEntity companyEntity) {
+        this.getHibernateTemplate().delete(companyEntity);
         return true;
     }
 

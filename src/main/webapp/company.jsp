@@ -22,6 +22,7 @@
                 <li><a href="company/addEmployee.jsp" target="in">增加员工</a></li>
                 <li><a href="listCompanyAction" target="in">查看和修改公司信息</a></li>
                 <li><a href="listCompanyEvaluationAction" target="in">查看公司订单评价</a></li>
+                <li><a href="" target="in">退出系统</a></li>
             </ul>
         </div>
         <div id="frame">

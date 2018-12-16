@@ -2,6 +2,7 @@ package com.ndt.service;
 
 import com.ndt.dao.AdministratorDAO;
 import com.ndt.entity.AdministratorEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 public class AdministratorService {
-	@Resource(name = "administratorDAO")
+	@Autowired
 	private AdministratorDAO administratorDAO;
 
 	public AdministratorDAO getAdministratorDAO() {

@@ -70,6 +70,26 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	@Action(value = "getAllCompanyAction",
+			results = {@Result(name = "success", location = "/latestCompanyInformation.jsp")})
+	public String getCompany() {
+		List<CompanyEntity> list = companyService.listCompanyEntities();
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.put("companyList", list);
+		logger.info("list size:"+list.size());
+		return SUCCESS;
+	}
+
+	@Action(value = "adminGetAllCompanyAction",
+			results = {@Result(name = "success", location = "/admin/showCompany.jsp")})
+	public String getCompanies() {
+		List<CompanyEntity> list = companyService.listCompanyEntities();
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.put("companyList", list);
+		logger.info("list size:"+list.size());
+		return SUCCESS;
+	}
+
 	@Action(value = "setCompanyIdToSession",
 			results = {@Result(name = "success", location = "/user/addOrder.jsp")})
 	public String setCompanyIdToSession() {

@@ -45,6 +45,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public void deleteCompany(Integer id) {
+        companyDAO.deleteCompany(companyDAO.findCompanyEntityById(id));
+    }
+
+    @Override
     public void deleteCar(Integer id) {
         companyDAO.deleteCar(companyDAO.findCarById(id));
     }
