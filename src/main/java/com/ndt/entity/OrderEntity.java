@@ -3,6 +3,7 @@ package com.ndt.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -21,8 +22,8 @@ public class OrderEntity implements Serializable {
 	private double itemsize;
 	private double price;
 	private String status;
-	private Timestamp availabletime;
-	private Timestamp availabletime1;
+	private Date availabletime;
+	private Date availabletime1;
 	private String title;
 
 	@Id
@@ -157,21 +158,21 @@ public class OrderEntity implements Serializable {
 
 	@Basic
 	@Column(name = "availabletime", nullable = true)
-	public Timestamp getAvailabletime() {
+	public Date getAvailabletime() {
 		return availabletime;
 	}
 
-	public void setAvailabletime(Timestamp availabletime) {
+	public void setAvailabletime(Date availabletime) {
 		this.availabletime = availabletime;
 	}
 
 	@Basic
 	@Column(name = "availabletime1", nullable = true)
-	public Timestamp getAvailabletime1() {
+	public Date getAvailabletime1() {
 		return availabletime1;
 	}
 
-	public void setAvailabletime1(Timestamp availabletime1) {
+	public void setAvailabletime1(Date availabletime1) {
 		this.availabletime1 = availabletime1;
 	}
 

@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -17,7 +19,7 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 	private Class<T> persistentClass;
 	@Autowired
 	SessionFactory sessionFactory;
-
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -98,6 +100,7 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		return query.list();
 	}
 	public PageBean findByPage(String strHQL, int currentPage, int pageSize) {
+		logger.info("当前页："+currentPage);
 		// 步骤1：创建一个PageBean对象
 		PageBean pageBean = new PageBean();
 		// 步骤2：获取一个数据库链接session
@@ -111,6 +114,7 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 		query.setMaxResults(pageSize);
 		// 步骤7：获取数据集合并且赋值给pageBean对象的data属性
 		pageBean.setData(query.list());
+		logger.info(query.list().toString());
 		// 步骤8：将输入的HQL语句动态查分成符合返回记录个数的HQL语句
 		strHQL = "select count(*) " + strHQL.substring(strHQL.toLowerCase().indexOf("from"));
 		// 步骤9：执行HQL语句完成查询动获取本页内的固定条数的数据

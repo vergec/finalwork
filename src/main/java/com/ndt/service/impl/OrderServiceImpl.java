@@ -1,6 +1,8 @@
 package com.ndt.service.impl;
 
+import com.ndt.dao.EvaluationDAO;
 import com.ndt.dao.OrderDAO;
+import com.ndt.entity.EvaluationEntity;
 import com.ndt.entity.OrderEntity;
 import com.ndt.entity.UserEntity;
 import com.ndt.service.OrderService;
@@ -17,10 +19,12 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+	private final EvaluationDAO evaluationDAO;
 	private final OrderDAO orderDAO;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	public OrderServiceImpl(OrderDAO orderDAO) {
+	public OrderServiceImpl(EvaluationDAO evaluationDAO, OrderDAO orderDAO) {
+		this.evaluationDAO = evaluationDAO;
 		this.orderDAO = orderDAO;
 	}
 
@@ -30,13 +34,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderEntity addOrder(OrderEntity orderEntity, UserEntity userEntity, int companyId) {
+	public OrderEntity addOrder(OrderEntity orderEntity, UserEntity userEntity, int companyId, String[] time) {
 		orderEntity.setTime(new Timestamp(new Date().getTime()));
 		orderEntity.setUserid(userEntity.getUserid());
 		orderEntity.setCompanyid(companyId);
 		orderEntity.setStatus("等待收件");
-		orderEntity.setAvailabletime(Timestamp.valueOf(orderEntity.getAvailabletime().toString().replace("T"," ")));
-		orderEntity.setAvailabletime1(Timestamp.valueOf(orderEntity.getAvailabletime1().toString().replace("T"," ")));
+		logger.info(time[0]+" "+time[1]);
+		orderEntity.setAvailabletime(Timestamp.valueOf(time[0].replace("T"," ")+":00"));
+		orderEntity.setAvailabletime1(Timestamp.valueOf(time[1].replace("T"," ")+":00"));
 		logger.info(orderEntity.toString());
 		return orderDAO.addOrder(orderEntity);
 	}
@@ -69,6 +74,20 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public PageBean queryOrderByPageForUser(int userId, int currentPage, int pageSize) {
 		return orderDAO.queryOrderByPageForUser(userId,currentPage,pageSize);
+	}
+
+	@Override
+	public void addUserEvaluation(OrderEntity orderEntity, EvaluationEntity evaluationEntity, List<String> fileName) {
+		evaluationEntity.setUserid(orderEntity.getUserid());
+		evaluationEntity.setCompanyid(orderEntity.getCompanyid());
+		evaluationEntity.setOrderid(orderEntity.getOrderid());
+		evaluationEntity.setTime(new Timestamp(new Date().getTime()));
+		evaluationEntity.setPhoto1(fileName.get(0));
+		if (fileName.size()>=2)
+			evaluationEntity.setPhoto2(fileName.get(1));
+		if (fileName.size()>=3)
+			evaluationEntity.setPhoto3(fileName.get(2));
+		evaluationDAO.insertEvaluation(evaluationEntity);
 	}
 
 

@@ -10,13 +10,15 @@
 <html>
 <head>
 	<title>新建订单页面</title>
-	<link type="text/css" href="../css/showInfo.css" rel="stylesheet">
+	<script src="../js/jquery.min.js"></script>
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="show">
 	<div id="info">
 		<form action="addOrder" method="post" id="form">
-			<table id="table" class="hoverTable">
+			<table id="table" class="table table-hover table-striped">
 				<tr>
 					<td>订单标题</td>
 					<td><input type="text" id="title" name="orderEntity.title" title="" size="35"></td>
@@ -40,12 +42,12 @@
 				<tr>
 					<td>期望取件时间</td>
 					<td>
-						<s:textfield type="date" name="orderEntity.availabletime" format="yyMMdd:hh"/>
-						<s:textfield type="date" name="orderEntity.availabletime1" format="yyMMdd:hh"/>
+						<input type="datetime-local" name="time"/>~
+						<input type="datetime-local" name="time" />
 					</td>
 				</tr>
 			</table>
-			<input type="submit" value="提交" id="submit">
+			<input type="submit" value="提交" id="submit" style="align-content: center;" class="btn btn-primary">
 		</form>
 	</div>
 </div>

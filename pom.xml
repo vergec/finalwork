@@ -130,6 +130,14 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${jcloverslf4j.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

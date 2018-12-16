@@ -36,6 +36,15 @@ public class UserAction extends ActionSupport {
 	private final OrderService orderService;
 	private OrderEntity orderEntity;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private String[] time;
+
+	public String[] getTime() {
+		return time;
+	}
+
+	public void setTime(String[] time) {
+		this.time = time;
+	}
 
 	public OrderEntity getOrderEntity() {
 		return orderEntity;
@@ -77,7 +86,7 @@ public class UserAction extends ActionSupport {
 		logger.info(orderEntity.toString());
 		UserEntity user = (UserEntity) ActionContext.getContext().getSession().get("user");
 		int companyId = Integer.parseInt(ActionContext.getContext().getSession().get("companyId").toString());
-		orderService.addOrder(orderEntity, user, companyId);
+		orderService.addOrder(orderEntity, user, companyId, time);
 		logger.info(orderEntity.toString());
 		return SUCCESS;
 	}
@@ -90,13 +99,17 @@ public class UserAction extends ActionSupport {
 		PageBean pageBean = null;
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int page = 1;
-		if (request.getAttribute("page") == null) {
+		if (request.getParameter("page") == null) {
 			request.setAttribute("page", 1);
+			logger.debug("set page");
 		} else {
-			page = Integer.parseInt(request.getAttribute("page").toString());
+			page = Integer.parseInt(request.getParameter("page"));
+			request.setAttribute("page", page);
+			logger.debug("request get page:"+Integer.parseInt(request.getParameter("page")));
 		}
 		if (type.equals("user")) {
 			UserEntity user = (UserEntity) session.get("user");
+			logger.debug("page:"+page);
 			pageBean = orderService.queryOrderByPageForUser(user.getUserid(), page, 5);
 		}
 		logger.info(String.valueOf(Objects.requireNonNull(pageBean).getTotalPages()));
@@ -117,6 +130,14 @@ public class UserAction extends ActionSupport {
 		detailedOrder.setDeparture(orderEntity.getDeparture());
 		detailedOrder.setDestination(orderEntity.getDestination());
 		detailedOrder.setTime(orderEntity.getTime().toString());
+		detailedOrder.setItemsize(String.valueOf(orderEntity.getItemsize()));
+		detailedOrder.setAmount(String.valueOf(orderEntity.getItemamount()));
+		detailedOrder.setAvailabletime(orderEntity.getAvailabletime() + "~" + orderEntity.getAvailabletime1());
+		detailedOrder.setAvailabletimestart(orderEntity.getAvailabletime().toString().replace(" ","T"));
+		detailedOrder.setAvailabletimeend(orderEntity.getAvailabletime1().toString().replace(" ","T"));
+		detailedOrder.setStatus(orderEntity.getStatus());
+		detailedOrder.setCompanyid(String.valueOf(companyEntity.getCompanyid()));
+		detailedOrder.setCompanyname(companyEntity.getCompanyname());
 		if (orderEntity.getStatus().equals("等待收件")) {
 			detailedOrder.setDeliverytime("尚未收件");
 			detailedOrder.setFinishtime("尚未发货");
@@ -130,15 +151,14 @@ public class UserAction extends ActionSupport {
 			detailedOrder.setFinishtime(orderEntity.getFinishtime().toString());
 			detailedOrder.setPrice(String.valueOf(orderEntity.getPrice()));
 		}
-		detailedOrder.setItemsize(String.valueOf(orderEntity.getItemsize()));
-		detailedOrder.setAmount(String.valueOf(orderEntity.getItemamount()));
-		detailedOrder.setAvailabletime(orderEntity.getAvailabletime() + "~" + orderEntity.getAvailabletime1());
-		detailedOrder.setStatus(orderEntity.getStatus());
-		detailedOrder.setCompanyid(String.valueOf(companyEntity.getCompanyid()));
-		detailedOrder.setCompanyname(companyEntity.getCompanyname());
-		if (evaluationEntity != null)
+		if (evaluationEntity != null) {
+			if (!evaluationEntity.getPhoto1().equals("")||evaluationEntity.getPhoto1()!=null){
+				detailedOrder.setPic(evaluationEntity.getPhoto1());
+			}
+			logger.info("评价内容：" + evaluationEntity.getContent());
 			detailedOrder.setEvaluation(evaluationEntity.getContent());
-		request.setAttribute("b", detailedOrder);
+		}
+		ActionContext.getContext().getSession().put("b", detailedOrder);
 		return SUCCESS;
 	}
 }

@@ -3,18 +3,45 @@ package com.ndt.vo;
 public class DetailedOrder {
 	public String orderid;
 	public String companyid;
-	public String companyname;
-	public String departure;
-	public String destination;
+	private String companyname;
+	private String departure;
+	private String destination;
 	public String time;
-	public String deliverytime;
-	public String finishtime;
-	public String price;
-	public String amount;
-	public String itemsize;
-	public String availabletime;
-	public String status;
-	public String evaluation;
+	private String deliverytime;
+	private String finishtime;
+	private String price;
+	private String amount;
+	private String itemsize;
+	private String availabletime;
+	private String availabletimestart;
+	private String availabletimeend;
+	private String status;
+	private String evaluation;
+	private String pic;
+
+	public String getAvailabletimestart() {
+		return availabletimestart;
+	}
+
+	public void setAvailabletimestart(String availabletimestart) {
+		this.availabletimestart = availabletimestart;
+	}
+
+	public String getAvailabletimeend() {
+		return availabletimeend;
+	}
+
+	public void setAvailabletimeend(String availabletimeend) {
+		this.availabletimeend = availabletimeend;
+	}
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 
 	public String getCompanyid() {
 		return companyid;

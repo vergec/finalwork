@@ -10,8 +10,7 @@
         function goTo() {
             var p = document.getElementById("goto");
             var txt = p.value;
-            txt = txt - 1;
-            window.location = "showOrder.jsp?page=" + txt + "";
+            window.location = "showOrder?page=" + txt + "";
         }
 	</script>
 </head>
@@ -40,8 +39,8 @@
 
 </table>
 <div style="align-content: center">
-	<input type="button" onclick="window.location='showOrder.jsp?page=${page-1}'" value="上一单" id="left" class="btn btn-primary">
-	<input type="button" onclick="window.location='showOrder.jsp?page=${page+1}'" value="下一单" id="right" class="btn btn-primary">
+	<input type="button" onclick="window.location='showOrder?page=${page-1}'" value="上一单" id="left" class="btn btn-primary">
+	<input type="button" onclick="window.location='showOrder?page=${page+1}'" value="下一单" id="right" class="btn btn-primary">
 	当前第${page}页，总共${requestScope.res.totalPages}页<input type="text" id="goto" title=""
 														style="width: 50px">&nbsp;&nbsp;<input type="button"
 																							   onclick="goTo()" value="跳转" class="btn btn-success">
