@@ -27,9 +27,15 @@
     <bean id="companyDAO" class="com.ndt.dao.impl.CompanyDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="adminDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <!--Service-->
     <bean id="companyService" class="com.ndt.service.impl.CompanyServiceImpl">
         <property name="companyDAO" ref="companyDAO"/>
+    </bean>
+    <bean id="administratorService" class="com.ndt.service.impl.AdministratorServiceImpl">
+        <property name="administratorDAO" ref="adminDAO"/>
     </bean>
     <!--Action-->
     <bean id="loginAction" class="com.ndt.action.LoginAction" scope="prototype">

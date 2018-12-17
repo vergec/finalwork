@@ -61,15 +61,6 @@ public class UserAction extends ActionSupport {
 		this.orderService = orderService;
 	}
 
-	@Action(value = "getCompanyAction",
-			results = {@Result(name = "success", location = "/user/showCompany.jsp")})
-	public String getAllCompany() {
-		List<CompanyEntity> list = companyService.listCompanyEntities();
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		session.put("companyList", list);
-		return SUCCESS;
-	}
-
 	@Action(value = "getAllCompanyAction",
 			results = {@Result(name = "success", location = "/latestCompanyInformation.jsp")})
 	public String getCompany() {
@@ -80,15 +71,16 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	@Action(value = "adminGetAllCompanyAction",
-			results = {@Result(name = "success", location = "/admin/showCompany.jsp")})
-	public String getCompanies() {
+	@Action(value = "getCompanyAction",
+			results = {@Result(name = "success", location = "/user/showCompany.jsp")})
+	public String getAllCompany() {
 		List<CompanyEntity> list = companyService.listCompanyEntities();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.put("companyList", list);
-		logger.info("list size:"+list.size());
 		return SUCCESS;
 	}
+
+
 
 	@Action(value = "setCompanyIdToSession",
 			results = {@Result(name = "success", location = "/user/addOrder.jsp")})

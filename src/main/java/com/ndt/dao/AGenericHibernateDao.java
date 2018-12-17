@@ -135,8 +135,9 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 	private List<T> findByCriteria() {
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(this.persistentClass);
+		List<T> list = criteria.list();
 		session.close();
-		return criteria.list();
+		return list;
 	}
 
 	@Override

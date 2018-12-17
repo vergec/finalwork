@@ -42,7 +42,7 @@
                 <td><input type="text" name="time" value="${ly.time}" size="10" readOnly="true"></td>
                 <td style="size: 20px">${ly.title}</td>
                 <td>${ly.content}</td>
-                <td><img src="/up_img/${ly.photo1}" width="160" height="120"></td>
+                <td><img src="/uploads/${ly.photo1}" width="160" height="120"></td>
                 <td><input type="button"
                            onclick="window.location.href='DeleteEvaluation?id=${ly.evaluationId}'"
                            value="删除"></td>

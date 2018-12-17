@@ -108,8 +108,8 @@
         </form>
         <input type="button" onclick="acceptOrder()" value="接受订单">
         <input type="button" onclick="deliveried()" value="订单送达">
-        <input type="button" onclick="window.location='showOrder.jsp?page=${page-1}'" value="上一单" id="left">
-        <input type="button" onclick="window.location='showOrder.jsp?page=${page+1}'" value="下一单" id="right">
+        <input type="button" onclick="window.location='showEvaluation.jsp?page=${page-1}'" value="上一单" id="left">
+        <input type="button" onclick="window.location='showEvaluation.jsp?page=${page+1}'" value="下一单" id="right">
         当前第${page+1}页，总共${sessionScope.res.size()}页<input type="text" id="goto" title="" style="width: 50px">&nbsp;&nbsp;<input type="button" onclick="goTo()" value="跳转">
     </div>
 </div>
@@ -118,7 +118,7 @@
         var p = document.getElementById("goto");
         var txt = p.value;
         txt=txt-1;
-        window.location="showOrder.jsp?page="+txt+"";
+        window.location="showEvaluation.jsp?page="+txt+"";
     }
     function acceptOrder() {
         var status = "${b.status}";

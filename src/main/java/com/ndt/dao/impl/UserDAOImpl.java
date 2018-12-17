@@ -28,7 +28,7 @@ public class UserDAOImpl extends AGenericHibernateDao<UserEntity,Integer> implem
 
 	@Override
 	public List<UserEntity> findAllUser() {
-		return null;
+		return super.findAll();
 	}
 
 	@Override

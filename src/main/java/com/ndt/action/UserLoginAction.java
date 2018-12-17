@@ -34,7 +34,7 @@ public class UserLoginAction extends ActionSupport {
 	@Override
 	public void validate() {
 		UserEntity temp = userServiceImpl.getUserByName(userEntity);
-		if (temp.getSecret().equals(userEntity.getSecret())) {
+ 		if (temp.getSecret().equals(userEntity.getSecret())) {
 			userEntity = temp;
 			System.out.println("set userEntity");
 		} else {

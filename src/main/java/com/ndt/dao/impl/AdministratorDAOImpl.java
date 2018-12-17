@@ -1,16 +1,19 @@
 package com.ndt.dao.impl;
 
-import com.ndt.dao.AGenericHibernateDao;
 import com.ndt.dao.AdministratorDAO;
 import com.ndt.entity.AdministratorEntity;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 
 
-@Repository("administratorDAO") //进行注入
-public class AdministratorDAOImpl extends AGenericHibernateDao<AdministratorEntity,Integer> implements AdministratorDAO {
+public class AdministratorDAOImpl extends HibernateDaoSupport implements AdministratorDAO{
+
 	@Override
-	public List findByHQL(String strHQL) {
-		return super.findByHQL(strHQL);
+	public boolean login(AdministratorEntity administratorEntity) {
+		if(this.getHibernateTemplate().findByExample(administratorEntity).size()>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
