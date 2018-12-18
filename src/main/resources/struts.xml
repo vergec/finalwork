@@ -37,11 +37,11 @@
 			<result name="list">/company/showCompany.jsp</result>
 			<result name="update" type="redirect">listCompanyAction.action</result>
 			<result name="delete" type="redirectAction">
-				<param name="namespace">/user</param>
+				<param name="namespace">/admin</param>
 				<param name="actionName">adminGetAllCompanyAction.action</param>
 			</result>
 			<result name="adminUpdate" type="redirectAction">
-				<param name="namespace">/user</param>
+				<param name="namespace">/admin</param>
 				<param name="actionName">adminGetAllCompanyAction.action</param>
 			</result>
 			<allowed-methods>update,delete,adminUpdate</allowed-methods>

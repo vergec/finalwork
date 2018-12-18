@@ -80,8 +80,6 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-
-
 	@Action(value = "setCompanyIdToSession",
 			results = {@Result(name = "success", location = "/user/addOrder.jsp")})
 	public String setCompanyIdToSession() {

@@ -32,6 +32,7 @@ public class AdminAction {
     private final EvaluationDAO evaluationDAO;
     private EvaluationEntity evaluationEntity;
     private AdministratorEntity administratorEntity;
+    private UserEntity userEntity;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     public AdminAction(UserService userService, CompanyService companyService, AdministratorService administratorService, EvaluationDAO evaluationDAO) {
@@ -52,6 +53,20 @@ public class AdminAction {
         }else{
             return ERROR;
         }
+    }
+
+    @Action(value = "updateUserAction",
+            results = {@Result(name = "success", type = "redirect", location = "getAllUserAction")})
+    public String updateUserAction(){
+        userService.updateUser(userEntity);
+        return SUCCESS;
+    }
+
+    @Action(value = "deleteUserAction",
+            results = {@Result(name = "success", type = "redirect", location = "getAllUserAction")})
+    public String deleteUserAction(){
+        userService.deleteUser(userService.getUserById(userEntity.getUserid()));
+        return SUCCESS;
     }
 
     @Action(value = "deleteEvaluationAction",
@@ -87,6 +102,14 @@ public class AdminAction {
         session.put("companyList", list);
         logger.info("list size:"+list.size());
         return SUCCESS;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     public AdministratorEntity getAdministratorEntity() {

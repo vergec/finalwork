@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,23 +19,20 @@
         <th style="text-align:center;">员工职位</th>
         <th style="text-align:center;">员工电话</th>
         <th style="text-align:center;">操作</th>
-        <th style="text-align:center;">重置</th>
     </tr>
     <s:iterator value="employeeEntities" var="ly">
-        <form id="test_form" method="post" action="updateEmployeeAction" onsubmit="return check()">
-            <td><input type="text" class="form-control" name="employeeEntity.employeeid" value="${ly.employeeid}"></td>
-            <td><input type="text" class="form-control" name="employeeEntity.name" value="${ly.name}"></td>
-            <td><input type="text" class="form-control" name="employeeEntity.position" value="${ly.position}"></td>
-            <td><input type="text" class="form-control" name="employeeEntity.phone" value="${ly.phone}"></td>
+            <tr>
+            <td style="text-align:center;">${ly.employeeid}</td>
+            <td style="text-align:center;">${ly.name}</td>
+            <td style="text-align:center;">${ly.position}</td>
+            <td style="text-align:center;">${ly.phone}</td>
             <td style="text-align:center;">
-                <input type="submit" value="修改" class="btn btn-info">
+                <input type="button" value="修改" class="btn btn-info" onclick="update('${ly.employeeid}','${ly.name}','${ly.position}','${ly.phone}')">
                 <input type="button" class="btn btn-info"
                        onclick="delcfm('deleteEmployeeAction?employeeEntity.employeeid=${ly.employeeid}')"
                        value="删除">
             </td>
-            <td style="text-align:center;"><input type="reset" class="btn btn-info" value="重置"></td>
             </tr>
-        </form>
     </s:iterator>
 </table>
 <script>
@@ -46,14 +45,22 @@
         var url = $.trim($("#url").val());//获取会话中的隐藏属性URL
         window.location.href = url;
     }
-    function check(){
-        var gnl=confirm("确定要提交?");
-        if (gnl==true){
-            return true;
-        }else{
-            return false;
-        }
+
+    function update(employeeid,name,position,phone) {
+        $('#employeeid').val(employeeid);
+        $('#name').val(name);
+        $('#position').val(position);
+        $('#phone').val(phone);
+        $('#myModal').modal();
     }
+    // function check(){
+    //     var gnl=confirm("确定要提交?");
+    //     if (gnl==true){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
 </script>
 <!-- 信息删除确认 -->
@@ -76,5 +83,32 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">输入更改的信息</h4>
+            </div>
+            <form action="../updateEmployeeAction" method="post">
+                <div class="modal-body">
+                    <p>员工编号</p>
+                    <input type="text" class="form-control" id="employeeid" name="employeeEntity.employeeid">
+                    <p>员工姓名</p>
+                    <input type="text" class="form-control" id="name" name="employeeEntity.name">
+                    <p>员工职位</p>
+                    <input type="text" class="form-control" id="position" name="employeeEntity.position">
+                    <p>员工电话</p>
+                    <input type="text" class="form-control" id="phone" name="employeeEntity.phone">
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+                    <input class="btn btn-primary" type="submit" value="提交"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 </body>
 </html>

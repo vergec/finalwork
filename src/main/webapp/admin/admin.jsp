@@ -18,7 +18,7 @@
                 <li><a href="adminGetAllCompanyAction" target="in">管理运输公司</a></li>
                 <li><a href="getAllUserAction" target="in">管理用户</a></li>
                 <li><a href="getAllEvaluationAction" target="in">管理评价</a></li>
-                <li><a href="" target="in">退出系统</a></li>
+                <li><a href="../index.jsp">退出系统</a></li>
             </ul>
         </div>
         <div id="frame">

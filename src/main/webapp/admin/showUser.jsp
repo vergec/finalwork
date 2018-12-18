@@ -26,28 +26,27 @@
     <th style="text-align:center;">性别</th>
     <th style="text-align:center;">email</th>
     <th style="text-align:center;">操作</th>
-    <th style="text-align:center;">重置</th>
     </thead>
     <tbody>
     <c:forEach items="${sessionScope.get('userList')}" var="ly">
         <tr>
-            <form action="../adminUpdateCompanyAction" method="post" onsubmit="return check()">
-                <td style="text-align:center;"><input name="" value="${ly.userid}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.loginname}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.username}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.secret}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.phone}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.sex}" class="form-control" size="10"></td>
-                <td style="text-align:center;"><input name="" value="${ly.email}" class="form-control" size="10"></td>
-                <td style="text-align:center;">
-                    <input type="submit" value="修改" class="btn btn-info">
-                    <input type="button" class="btn btn-info"
-                           onclick="delcfm('../deleteCompanyAction?companyEntity.companyid=${ly.userid}')"
-                           value="删除">
-                </td>
-                <td style="text-align:center;"><input type="reset" class="btn btn-info" value="重置"></td>
-            </form>
+            <td style="text-align:center;">${ly.userid}</td>
+            <td style="text-align:center;">${ly.loginname}</td>
+            <td style="text-align:center;">${ly.username}</td>
+            <td style="text-align:center;">${ly.secret}</td>
+            <td style="text-align:center;">${ly.phone}</td>
+            <td style="text-align:center;">${ly.sex}</td>
+            <td style="text-align:center;">${ly.email}</td>
+            <td style="text-align:center;">
+                <input type="submit" value="修改" class="btn btn-info"
+                       onclick="update('${ly.userid}','${ly.loginname}','${ly.username}','${ly.secret}',
+                               '${ly.phone}','${ly.sex}','${ly.email}')">
+                <input type="button" class="btn btn-info"
+                       onclick="delcfm('deleteUserAction?userEntity.userid=${ly.userid}')"
+                       value="删除">
+            </td>
         </tr>
+
     </c:forEach>
     </tbody>
 </table>
@@ -61,16 +60,51 @@
         var url = $.trim($("#url").val());//获取会话中的隐藏属性URL
         window.location.href = url;
     }
-    function check(){
-        var gnl=confirm("确定要提交?");
-        if (gnl==true){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
+    function update(userid, loginname, username, secret, phone, sex, email) {
+        $('#userid').val(userid);
+        $('#loginname').val(loginname);
+        $('#username').val(username);
+        $('#secret').val(secret);
+        $('#phone').val(phone);
+        $('#sex').val(sex);
+        $('#email').val(email);
+        $('#myModal').modal();
+    }
 </script>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">输入更改的信息</h4>
+            </div>
+            <form action="updateUserAction" method="post">
+                <div class="modal-body">
+                    <p>用户编号</p>
+                    <input type="text" name="userEntity.userid" class="form-control" id="userid">
+                    <p>用户登录名</p>
+                    <input type="text" name="userEntity.loginname" class="form-control" id="loginname">
+                    <p>用户名</p>
+                    <input type="text" name="userEntity.username" class="form-control" id="username">
+                    <p>密码</p>
+                    <input type="text" name="userEntity.secret" class="form-control" id="secret">
+                    <p>电话</p>
+                    <input type="text" name="userEntity.phone" class="form-control" id="phone">
+                    <p>性别</p>
+                    <input type="text" name="userEntity.sex" class="form-control" id="sex">
+                    <p>邮箱</p>
+                    <input type="text" name="userEntity.email" class="form-control" id="email">
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+                    <input class="btn btn-primary" type="submit" value="提交"/>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 <!-- 信息删除确认 -->
 <div class="modal fade" id="delcfmModel">
     <div class="modal-dialog">
