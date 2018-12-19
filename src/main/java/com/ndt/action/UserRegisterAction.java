@@ -37,8 +37,8 @@ public class UserRegisterAction extends ActionSupport {
 	}
 
 	@Autowired
-	public UserRegisterAction(UserServiceImpl userServiceImpl) {
-		this.userService = userServiceImpl;
+	public UserRegisterAction(UserServiceImpl userService) {
+		this.userService = userService;
 	}
 
 	@Override
@@ -74,6 +74,7 @@ public class UserRegisterAction extends ActionSupport {
 
 	@Action("userRegisterAction")
 	public String register() throws Exception {
+		userEntity.setImg("default.png");
 		userService.register(userEntity);
 		return SUCCESS;
 	}

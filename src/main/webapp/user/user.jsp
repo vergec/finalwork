@@ -15,15 +15,16 @@
 	<div id="container">
 		<div id="nav">
 			<ul class="nav nav-pills nav-stacked" role="tablist" style="width: 180px">
-				<li class="active"><a href="#">用户信息管理</a></li>
+				<li class="active"><a href="welcome.jsp" target="in">用户信息管理</a></li>
 				<li><a href="getCompanyAction" target="in">发布订单</a></li>
 				<li><a href="getCompanyAction" target="in">查看运输公司</a></li>
 				<li><a href="showOrder" target="in">查看订单</a></li>
-				<li><a href="showUser" target="in">修改个人信息</a></li>
+				<li><a href="editPersonalInfo.jsp" target="in">修改个人信息</a></li>
+				<li><a href="userExit">退出</a></li>
 			</ul>
 		</div>
 		<div id="frame">
-			<iframe class="s" name="in" width="1200px" height="1000px" frameborder="no" border="0"></iframe>
+			<iframe class="s" name="in" width="1200px" height="1000px" frameborder="no" src="welcome.jsp"></iframe>
 		</div>
 	</div>
 </div>

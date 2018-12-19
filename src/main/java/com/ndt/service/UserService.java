@@ -12,6 +12,7 @@ public interface UserService {
 	UserEntity creatUser(UserEntity userEntity);
 	//更新用户
 	UserEntity register(UserEntity userEntity);
+	UserEntity updateUser(UserEntity userEntity, UserEntity newUserEntity);
 	void updateUser(UserEntity userEntity);
 	//检查用户名是否存在
 	boolean isUserExist(int id);

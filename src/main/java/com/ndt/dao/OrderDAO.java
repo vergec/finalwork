@@ -19,6 +19,8 @@ public interface OrderDAO extends IBaseDAO<OrderEntity, Integer> {
 
 	List<OrderEntity> queryAllOrders();
 
+	List<OrderEntity> queryOrdersForCom(int companyId);
+
 	List<OrderEntity> queryOrdersByHql(String hql);
 
 	PageBean queryOrderByPageForUser(int userId, int currentPage, int pageSize);

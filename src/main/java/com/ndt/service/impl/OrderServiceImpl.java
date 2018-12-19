@@ -71,11 +71,15 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.queryOrdersByHql(hql);
 	}
 
+
+
+//	用户查看订单分页方法
 	@Override
 	public PageBean queryOrderByPageForUser(int userId, int currentPage, int pageSize) {
 		return orderDAO.queryOrderByPageForUser(userId,currentPage,pageSize);
 	}
 
+//	用户添加评价使用
 	@Override
 	public void addUserEvaluation(OrderEntity orderEntity, EvaluationEntity evaluationEntity, List<String> fileName) {
 		evaluationEntity.setUserid(orderEntity.getUserid());
@@ -90,5 +94,8 @@ public class OrderServiceImpl implements OrderService {
 		evaluationDAO.insertEvaluation(evaluationEntity);
 	}
 
-
+	@Override
+	public List<OrderEntity> queryAllOrdersForCom(int companyId){
+		return orderDAO.queryOrdersForCom(companyId);
+	}
 }

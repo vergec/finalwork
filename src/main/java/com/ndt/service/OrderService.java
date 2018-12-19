@@ -26,4 +26,6 @@ public interface OrderService {
 
 	void addUserEvaluation(OrderEntity orderEntity, EvaluationEntity evaluationEntity, List<String> fileName);
 
+	List<OrderEntity> queryAllOrdersForCom(int companyId);
+
 }

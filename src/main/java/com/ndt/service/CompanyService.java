@@ -3,6 +3,7 @@ package com.ndt.service;
 import com.ndt.entity.CarEntity;
 import com.ndt.entity.CompanyEntity;
 import com.ndt.entity.EmployeeEntity;
+import com.ndt.entity.EvaluationEntity;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface CompanyService {
     void updateCompany(CompanyEntity companyEntity);
     void addEmployee(EmployeeEntity employeeEntity);
     void addCar(CarEntity carEntity);
+    EvaluationEntity queryEvaluation(int orderId);
+    List<EvaluationEntity> queryAllEvaluation(int companyId);
 }

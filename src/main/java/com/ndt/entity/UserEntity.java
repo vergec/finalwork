@@ -17,6 +17,16 @@ public class UserEntity implements Serializable {
 	private String phone;
 	private String sex;
 	private String email;
+	private String img;
+
+	@Column(name = "img",nullable = true)
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 
 	@Id
 	@Column(name = "userid", nullable = false)
@@ -105,5 +115,10 @@ public class UserEntity implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(userid, loginname, secret, username, phone, sex, email);
+	}
+
+	@Override
+	public String toString() {
+		return "userid:"+userid+" username:"+username+" loginname:"+loginname+" secret:"+secret+" phone:"+phone+" sex:"+sex+" email:"+email+" img:"+img;
 	}
 }

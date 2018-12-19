@@ -96,8 +96,9 @@ public abstract class AGenericHibernateDao<T extends Serializable, ID extends Se
 	public List<T> findByHQL(String strHQL) {
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(strHQL);
+		List list = query.list();
 		session.close();
-		return query.list();
+		return list;
 	}
 	public PageBean findByPage(String strHQL, int currentPage, int pageSize) {
 		logger.info("当前页："+currentPage);

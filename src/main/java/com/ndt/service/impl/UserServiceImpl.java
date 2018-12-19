@@ -5,6 +5,8 @@ import com.ndt.dao.UserDAO;
 import com.ndt.entity.EvaluationEntity;
 import com.ndt.entity.UserEntity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ public class UserServiceImpl implements com.ndt.service.UserService {
 
 	private final UserDAO userDAO;
 	private final EvaluationDAO evaluationDAO;
-
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	public UserServiceImpl(UserDAO userDAO, EvaluationDAO evaluationDAO) {
 		this.userDAO = userDAO;
@@ -27,13 +29,24 @@ public class UserServiceImpl implements com.ndt.service.UserService {
 	}
 
 	public UserEntity creatUser(UserEntity userEntity) {
+
 		return userDAO.creatUser(userEntity);
 	}
 
+	public UserEntity updateUser(UserEntity userEntity, UserEntity newUserEntity) {
+		userEntity.setEmail(newUserEntity.getEmail());
+		userEntity.setUsername(newUserEntity.getLoginname());
+		userEntity.setPhone(newUserEntity.getPhone());
+		userEntity.setSecret(newUserEntity.getSecret());
+		userEntity.setSex(newUserEntity.getSex());
+		userEntity.setImg(newUserEntity.getImg());
+		logger.debug(userEntity.toString());
+		userDAO.update(userEntity);
+		return userEntity;
+	}
 	public void updateUser(UserEntity userEntity) {
 		userDAO.update(userEntity);
 	}
-
 	public boolean isUserExist(int id) {
 		return userDAO.findById(id)!=null;
 	}

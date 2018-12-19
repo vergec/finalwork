@@ -42,6 +42,11 @@ public class OrderDAOImpl extends AGenericHibernateDao<OrderEntity,Integer> impl
 	}
 
 	@Override
+	public List<OrderEntity> queryOrdersForCom(int companyId) {
+		return super.findByHQL("from OrderEntity where companyid = '"+companyId+"'");
+	}
+
+	@Override
 	public List<OrderEntity> queryOrdersByHql(String hql) {
 		return findByHQL(hql);
 	}

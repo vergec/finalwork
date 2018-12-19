@@ -1,26 +1,15 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="JavaBean.EvaluationBean" %>
-<%@ page import="DAO.EvaluationDAO" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: machenike
-  Date: 2018/6/12 0012
-  Time: 18:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/showInfo.css">
+    <script src="../js/jquery.min.js"></script>
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<script src="../js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
 <body>
-<%
-    ArrayList<EvaluationBean> arrayList = new EvaluationDAO().getCompanyEvaluation((Integer) session.getAttribute("companyid"));
-    request.setAttribute("arrayList", arrayList);
-%>
-<table id="table" class="hoverTable">
+<table id="table" class="table table-hover table-striped">
     <tr>
         <th>评价编号</th>
         <th>用户编号</th>
@@ -31,7 +20,7 @@
         <th>评论内容</th>
         <th>评论图片</th>
     </tr>
-    <c:forEach items="${arrayList}" var="ly">
+    <s:iterator value="#evaluationEntityList" var="ly">
         <form>
             <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
                 <td><input type="text" name="evaluationId" value="${ly.evaluationId}" size="10" readOnly="true"></td>
@@ -44,7 +33,7 @@
                 <td><img src="/uploads/${ly.photo1}" width="160" height="120"></td>
             </tr>
         </form>
-    </c:forEach>
+	</s:iterator>
 </table>
 </body>
 </html>

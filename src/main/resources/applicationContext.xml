@@ -30,9 +30,11 @@
     <bean id="adminDAO" class="com.ndt.dao.impl.AdministratorDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
     <!--Service-->
     <bean id="companyService" class="com.ndt.service.impl.CompanyServiceImpl">
         <property name="companyDAO" ref="companyDAO"/>
+		<property name="evaluationDAO" ref="evaluationDAOImpl"/>
     </bean>
     <bean id="administratorService" class="com.ndt.service.impl.AdministratorServiceImpl">
         <property name="administratorDAO" ref="adminDAO"/>

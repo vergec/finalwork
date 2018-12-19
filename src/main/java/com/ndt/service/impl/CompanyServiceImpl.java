@@ -1,16 +1,18 @@
 package com.ndt.service.impl;
 
 import com.ndt.dao.CompanyDAO;
+import com.ndt.dao.EvaluationDAO;
 import com.ndt.entity.CarEntity;
 import com.ndt.entity.CompanyEntity;
 import com.ndt.entity.EmployeeEntity;
+import com.ndt.entity.EvaluationEntity;
 import com.ndt.service.CompanyService;
 
 import java.util.List;
 
 public class CompanyServiceImpl implements CompanyService {
     private CompanyDAO companyDAO;
-
+	private EvaluationDAO evaluationDAO;
     @Override
     public List<EmployeeEntity> listEmployeeEntities() {
         return companyDAO.findAllEmployee();
@@ -84,11 +86,29 @@ public class CompanyServiceImpl implements CompanyService {
         companyDAO.addCar(carEntity);
     }
 
-    public CompanyDAO getCompanyDAO() {
+	@Override
+	public EvaluationEntity queryEvaluation(int orderId) {
+		return evaluationDAO.getOrderEvaluation(orderId);
+	}
+
+	@Override
+	public List<EvaluationEntity> queryAllEvaluation(int companyId) {
+		return evaluationDAO.getCompanyEvaluation(companyId);
+	}
+
+	public CompanyDAO getCompanyDAO() {
         return companyDAO;
     }
 
     public void setCompanyDAO(CompanyDAO companyDAO) {
         this.companyDAO = companyDAO;
     }
+
+	public EvaluationDAO getEvaluationDAO() {
+		return evaluationDAO;
+	}
+
+	public void setEvaluationDAO(EvaluationDAO evaluationDAO) {
+		this.evaluationDAO = evaluationDAO;
+	}
 }
