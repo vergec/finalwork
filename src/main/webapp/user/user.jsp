@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="big">
-	<img src="../img/index/background.jpg" width="1402px"/>
+	<%--<img src="../img/index/background.jpg" width="1402px"/>--%>
 	<div id="container">
 		<div id="nav">
 			<ul class="nav nav-pills nav-stacked" role="tablist" style="width: 180px">

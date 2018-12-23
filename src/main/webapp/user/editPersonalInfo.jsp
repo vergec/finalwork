@@ -43,7 +43,7 @@
 					<td><input type="file" name="file"/></td>
 				</tr>
             </table>
-            <input type="submit" value="确认更改" id="submit">
+            <input type="submit" value="确认更改" id="submit"  class="btn btn-primary">
         </form>
     </div>
 </div>

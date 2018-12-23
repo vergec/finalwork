@@ -108,6 +108,7 @@ public class CompanyOrderAction extends ActionSupport {
 	public String showCompanyEvaluation() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		List<EvaluationEntity> evaluationEntityList = companyService.queryAllEvaluation(Integer.parseInt(session.get("companyId").toString()));
+		logger.debug("company evaluations size: "+evaluationEntityList.size());
 		session.put("evaluationEntityList",evaluationEntityList);
 		return SUCCESS;
 	}

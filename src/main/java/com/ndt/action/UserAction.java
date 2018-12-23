@@ -242,7 +242,6 @@ public class UserAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.remove("user");
 		session.remove("type");
-		session.clear();
 		return SUCCESS;
 	}
 }

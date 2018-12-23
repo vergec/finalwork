@@ -26,8 +26,10 @@
         </div>
         <div class="w3l_header_right">
             <ul>
-                <li><a href="login.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>log in</a>
+                <li><a href="login.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>company log in</a>
                 </li>
+				<li><a href="user/user_login.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>user log in</a>
+				</li>
                 <li><a href="sign-up.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>sign up</a>
                 </li>
             </ul>

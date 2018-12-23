@@ -51,8 +51,8 @@ public class UserLoginAction extends ActionSupport {
 	}
 
 	@Action(value = "userLoginAction",
-			results = {@Result(name = "userLoginSuccess", location = "/user/user.jsp"),
-					@Result(name = "input", location = "/user/user_login.jsp")})
+			results = {@Result(name = "userLoginSuccess", location = "/user/user.jsp",type = "redirect"),
+					@Result(name = "input", location = "/user/user_login.jsp",type = "redirect")})
 	public String login() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		userEntity = userService.getUserByName(userEntity);
