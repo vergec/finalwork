@@ -4,8 +4,8 @@
 <head>
     <title>Login/Logout animation concept</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-    <link rel="stylesheet" href="css/login_register.css">
-    <link rel="stylesheet" href="css/register.css" type="text/css">
+    <link rel="stylesheet" href="../css/login_register.css">
+    <link rel="stylesheet" href="../css/register.css" type="text/css">
 </head>
 <body>
 <div class="cont">

@@ -42,7 +42,7 @@
                     <br>
                     <input type="submit" class="login__submit" value="注册">
                 </form>
-                <p class="login__signup">Alreadly have an account &nbsp;<a href="../login.jsp">Sign in</a></p>
+                <p class="login__signup">Alreadly have an account &nbsp;<a href="user_login.jsp">Sign in</a></p>
             </div>
         </div>
     </div>

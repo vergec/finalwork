@@ -20,19 +20,19 @@
             <table id="table" class="table table-hover table-striped">
                 <tr>
                     <td>用户名</td>
-                    <td><input type="text" id="id" name="userEntity.username" title="" value="${sessionScope.user.loginname}" /></td>
+                    <td><input type="text" class="form-control" id="id" name="userEntity.username" title="" value="${sessionScope.user.loginname}" /></td>
                 </tr>
                 <tr>
                     <td>新密码</td>
-                    <td><input type="text" id="companyname" name="userEntity.secret" title="" /></td>
+                    <td><input type="text" class="form-control" id="companyname" name="userEntity.secret" title="" /></td>
                 </tr>
                 <tr>
                     <td>电话号码</td>
-                    <td><input type="text" id="destination" name="userEntity.phone" title="" value="${sessionScope.user.phone}"/></td>
+                    <td><input type="text" class="form-control" id="destination" name="userEntity.phone" title="" value="${sessionScope.user.phone}"/></td>
                 </tr>
                 <tr>
                     <td>电子邮件</td>
-                    <td><input type="text" id="time" name="userEntity.email" title="" value="${sessionScope.user.email}"/></td>
+                    <td><input type="text" class="form-control" id="time" name="userEntity.email" title="" value="${sessionScope.user.email}"/></td>
                 </tr>
                 <tr>
                     <td>性别</td>

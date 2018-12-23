@@ -24,8 +24,8 @@
                     <br>
                     <input type="submit" class="login__submit" value="登陆">
                 </form>
-                <p class="login__signup">Don't have an account? &nbsp;<a href="../register.jsp">Sign up</a></p>
-                <p class="login__signup">公司用户登录入口 &nbsp;<a href="../login.jsp">Sign in</a></p>
+                <p class="login__signup">Don't have an account? &nbsp;<a href="user_register.jsp">Sign up</a></p>
+                <p class="login__signup">公司用户登录入口 &nbsp;<a href="../company/login.jsp">Sign in</a></p>
             </div>
         </div>
     </div>

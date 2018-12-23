@@ -9,29 +9,27 @@
                         href="mailto:970017280@qq.com">970017280@qq.com</a></li>
             </ul>
         </div>
-        <div id="example2">
-            <div class="wrapper2">
-                <div class="content-wrapper2">
-                    <div class="search-button2">
-                        <span></span>
-                    </div>
-                    <div class="search-box2">
-                        <form action="#" method="post">
-                            <input type="text" name="Search" placeholder="Search Here..." required="">
-                            <input type="submit" value="Send"> <img src="images/close.png" alt=" "/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <%--<div id="example2">--%>
+            <%--<div class="wrapper2">--%>
+                <%--<div class="content-wrapper2">--%>
+                    <%--<div class="search-button2">--%>
+                        <%--<span></span>--%>
+                    <%--</div>--%>
+                    <%--&lt;%&ndash;<div class="search-box2">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<form action="#" method="post">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<input type="text" name="Search" placeholder="Search Here..." required="">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<input type="submit" value="Send"> <img src="images/close.png" alt=" "/>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</form>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
         <div class="w3l_header_right">
             <ul>
-                <li><a href="login.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>company log in</a>
+                <li><a href="company/login.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>company log in</a>
                 </li>
 				<li><a href="user/user_login.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>user log in</a>
 				</li>
-                <li><a href="sign-up.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>sign up</a>
-                </li>
             </ul>
         </div>
         <div class="clearfix"></div>
@@ -61,9 +59,9 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="../index.jsp"><span data-hover="Home">首页</span></a></li>
                         <li><a href="../services.jsp"><span data-hover="Services">服务</span></a></li>
-                        <li><a href="latestOrderInformation.jsp"><span data-hover="NewOrder">最新订单信息</span></a></li>
                         <li><a href="/user/getAllCompanyAction"><span data-hover="NewFirm">物流公司信息</span></a></li>
                         <li><a href="../mail.jsp"><span data-hover="Mail Us">关于我们</span></a></li>
+                        <li><a href="../help.jsp"><span data-hover="Help">帮助</span></a></li>
                     </ul>
                 </nav>
             </div>

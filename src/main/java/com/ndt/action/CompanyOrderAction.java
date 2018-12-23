@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@Namespace("/")
+@Namespace("/company")
 public class CompanyOrderAction extends ActionSupport {
 
 	private final OrderService orderService;
