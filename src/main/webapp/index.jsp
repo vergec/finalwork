@@ -72,13 +72,10 @@
         <img src="images/5.jpg" alt=" " class="img-responsive"/>
     </div>
     <div class="col-md-6 agile_banner_bottom1_right">
-        <h3>occaecat cupidatat non proident, sunt in culpa qui officia</h3>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-            sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-            adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+        <h3>优质的车辆服务</h3>
+        <p>哪都通公司拥有种类繁多的车辆类型，和优质的车辆服务，保障你的运输安全和提升你的服务体验。</p>
         <div class="details">
-            <a href="single.html">More Details</a>
+            <a href="">More Details</a>
         </div>
     </div>
     <div class="clearfix"></div>

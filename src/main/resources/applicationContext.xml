@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:property-placeholder location="classpath:/db.properties"/>
     <!-- 注解配置事务 -->
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <!--&lt;!&ndash; 使用annotation &ndash;&gt;-->
     <context:annotation-config/>
     <!-- 使用annotation自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
@@ -88,6 +88,7 @@
                 <value>classpath:com/ndt/entity/EvaluationEntity.hbm.xml</value>
                 <value>classpath:com/ndt/entity/UserEntity.hbm.xml</value>
 				<value>classpath:com/ndt/entity/OrderEntity.hbm.xml</value>
+                <value>classpath:com/ndt/entity/UserEntity.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -110,6 +111,7 @@
         <property name="maxStatements" value="50"/>
         <!-- 当连接池里面的连接用完的时候,C3P0一下获取新的连接数 -->
         <property name="acquireIncrement" value="20"/>
+        <property name="checkoutTimeout" value="100"/>
     </bean>
 
      <!--定义事务管理器（声明式的事务）-->

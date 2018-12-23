@@ -61,7 +61,7 @@
                         <li><a href="../services.jsp"><span data-hover="Services">服务</span></a></li>
                         <li><a href="latestOrderInformation.jsp"><span data-hover="NewOrder">最新订单信息</span></a></li>
                         <li><a href="/user/getAllCompanyAction"><span data-hover="NewFirm">物流公司信息</span></a></li>
-                        <li><a href="mail.html"><span data-hover="Mail Us">关于我们</span></a></li>
+                        <li><a href="../mail.jsp"><span data-hover="Mail Us">关于我们</span></a></li>
                     </ul>
                 </nav>
             </div>

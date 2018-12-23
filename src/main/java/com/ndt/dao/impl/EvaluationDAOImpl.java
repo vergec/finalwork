@@ -6,7 +6,8 @@ import com.ndt.entity.EvaluationEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+import javax.transaction.Transactional;
+@Transactional
 @Repository
 public class EvaluationDAOImpl extends AGenericHibernateDao<EvaluationEntity, Integer> implements EvaluationDAO {
 	@Override

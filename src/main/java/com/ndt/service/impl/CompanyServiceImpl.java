@@ -7,9 +7,10 @@ import com.ndt.entity.CompanyEntity;
 import com.ndt.entity.EmployeeEntity;
 import com.ndt.entity.EvaluationEntity;
 import com.ndt.service.CompanyService;
-
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-
+//@Transactional(propagation=Propagation.REQUIRED,readOnly=false,rollbackFor={Exception.class})
 public class CompanyServiceImpl implements CompanyService {
     private CompanyDAO companyDAO;
 	private EvaluationDAO evaluationDAO;

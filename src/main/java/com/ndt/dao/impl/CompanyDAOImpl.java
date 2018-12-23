@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@javax.transaction.Transactional
 public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO {
     static int companyId;
 

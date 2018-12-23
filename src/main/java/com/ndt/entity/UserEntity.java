@@ -28,89 +28,90 @@ public class UserEntity implements Serializable {
 		this.img = img;
 	}
 
-	@Id
-	@Column(name = "userid", nullable = false)
-	public int getUserid() {
-		return userid;
-	}
+    @Id
+    @Column(name = "userid")
+    public int getUserid() {
+        return userid;
+    }
 
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
-	@Basic
-	@Column(name = "loginname", nullable = false, length = 255)
-	public String getLoginname() {
-		return loginname;
-	}
+    @Basic
+    @Column(name = "loginname")
+    public String getLoginname() {
+        return loginname;
+    }
 
-	public void setLoginname(String loginname) {
-		this.loginname = loginname;
-	}
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
 
-	@Basic
-	@Column(name = "secret", nullable = false, length = 255)
-	public String getSecret() {
-		return secret;
-	}
+    @Basic
+    @Column(name = "secret")
+    public String getSecret() {
+        return secret;
+    }
 
-	public void setSecret(String secret) {
-		this.secret = secret;
-	}
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
-	@Basic
-	@Column(name = "username", nullable = false, length = 255)
-	public String getUsername() {
-		return username;
-	}
+    @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	@Basic
-	@Column(name = "phone", nullable = false, length = 255)
-	public String getPhone() {
-		return phone;
-	}
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	@Basic
-	@Column(name = "sex", nullable = true, length = 255)
-	public String getSex() {
-		return sex;
-	}
+    @Basic
+    @Column(name = "sex")
+    public String getSex() {
+        return sex;
+    }
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-	@Basic
-	@Column(name = "email", nullable = false, length = 255)
-	public String getEmail() {
-		return email;
-	}
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		UserEntity that = (UserEntity) o;
-		return userid == that.userid &&
-				Objects.equals(loginname, that.loginname) &&
-				Objects.equals(secret, that.secret) &&
-				Objects.equals(username, that.username) &&
-				Objects.equals(phone, that.phone) &&
-				Objects.equals(sex, that.sex) &&
-				Objects.equals(email, that.email);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return userid == that.userid &&
+                Objects.equals(loginname, that.loginname) &&
+                Objects.equals(secret, that.secret) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(sex, that.sex) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(img, that.img);
+    }
 
 	@Override
 	public int hashCode() {

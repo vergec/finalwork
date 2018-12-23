@@ -6,7 +6,8 @@ import com.ndt.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+import javax.transaction.Transactional;
+@Transactional
 @Repository("useDAO")
 public class UserDAOImpl extends AGenericHibernateDao<UserEntity,Integer> implements UserDAO {
 

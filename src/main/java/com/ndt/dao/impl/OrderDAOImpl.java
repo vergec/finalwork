@@ -5,9 +5,9 @@ import com.ndt.dao.OrderDAO;
 import com.ndt.entity.OrderEntity;
 import com.ndt.vo.PageBean;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
+import javax.transaction.Transactional;
+@Transactional
 @Repository
 public class OrderDAOImpl extends AGenericHibernateDao<OrderEntity,Integer> implements OrderDAO {
 
