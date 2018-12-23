@@ -91,7 +91,7 @@
                 <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">输入更改的信息</h4>
             </div>
-            <form action="../updateEmployeeAction" method="post">
+            <form action="updateEmployeeAction" method="post">
                 <div class="modal-body">
                     <p>员工编号</p>
                     <input type="text" class="form-control" id="employeeid" name="employeeEntity.employeeid">

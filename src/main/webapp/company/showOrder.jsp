@@ -118,7 +118,7 @@
     function acceptOrder() {
         var status = "${sessionScope.get("b").get(param.page).status}";
         if (status === "等待收件") {
-            location.href = "../preAcceptOrder?orderid=${sessionScope.get("b").get(param.page).orderid}";
+            location.href = "preAcceptOrder?orderid=${sessionScope.get("b").get(param.page).orderid}";
         } else {
             alert('包裹未处于可接受订单状态！');
         }
@@ -127,7 +127,7 @@
     function deliveried() {
         var status = "${sessionScope.get("b").get(param.page).status}";
         if (status === "已发货") {
-            location.href = '../finishDelivery?orderid=${sessionScope.get("b").get(param.page).orderid}';
+            location.href = 'finishDelivery?orderid=${sessionScope.get("b").get(param.page).orderid}';
         } else {
             alert('包裹未处于可送达状态！');
         }

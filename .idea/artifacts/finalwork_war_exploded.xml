@@ -50,6 +50,9 @@
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.21" />
         </element>
       </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/finalwork/META-INF/MANIFEST.MF" />
+      </element>
       <element id="javaee-facet-resources" facet="finalwork/web/Web" />
     </root>
   </artifact>
