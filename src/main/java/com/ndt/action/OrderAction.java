@@ -94,7 +94,7 @@ public class OrderAction extends ActionSupport {
 		this.orderService = orderService;
 	}
 
-	@Action(value = "updateOrder",results = {@Result(location = "/user/showOrder",type = "redirect"),@Result(name = "companySuccess",location = "/listOrderAction",type = "redirect")})
+	@Action(value = "updateOrder",results = {@Result(location = "/user/showOrder",type = "redirect"),@Result(name = "companySuccess",location = "/company/listOrderAction",type = "redirect")})
 	public String updateOrder(){
 		OrderEntity order = orderService.queryOrderById(Integer.parseInt(ServletActionContext.getRequest().getParameter("orderid")));
 		logger.debug(order.toString());

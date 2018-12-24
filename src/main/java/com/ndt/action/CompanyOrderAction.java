@@ -79,7 +79,7 @@ public class CompanyOrderAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	@Action(value = "acceptOrder", results = {@Result(location = "/listOrderAction",type = "redirect")})
+	@Action(value = "acceptOrder", results = {@Result(location = "/company/listOrderAction",type = "redirect")})
 	public String acceptOrder() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -93,7 +93,7 @@ public class CompanyOrderAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	@Action(value = "finishDelivery",results = {@Result(location = "/listOrderAction",type = "redirect")})
+	@Action(value = "finishDelivery",results = {@Result(location = "/company/listOrderAction",type = "redirect")})
 	public String finishDelivery() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int orderid = Integer.parseInt(request.getParameter("orderid"));

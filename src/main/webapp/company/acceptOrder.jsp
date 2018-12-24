@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form id="form" method="post" action="../acceptOrder">
+<form id="form" method="post" action="acceptOrder">
     <h2>请选择运输车辆</h2>
     <s:select list="#request.carEntityList" name="acceptOrderParam.carid" listKey="carid" listValue="carid" headerValue="请选择"/>
     <h2>请选择运输人员</h2>

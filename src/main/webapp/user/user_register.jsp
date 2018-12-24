@@ -17,27 +17,27 @@
                 <form action="userRegisterAction" method="post">
                     <div class="login__row">
                         <input type="text" class="login__input" placeholder="loginname" name="userEntity.loginname"/>
-                        <s:fielderror name="userEntity.loginname"/>
+                        <s:fielderror fieldName="userEntity.loginname"/>
                     </div>
                     <div class="login__row">
                         <input type="password" class="login__input" placeholder="Password" name="userEntity.secret"/>
-                        <s:fielderror name="userEntity.secret"/>
+                        <s:fielderror fieldName="userEntity.secret"/>
                     </div>
                     <div class="login__row">
                         <input type="text" class="login__input" placeholder="name" name="userEntity.username"/>
-                        <s:fielderror name="userEntity.username"/>
+                        <s:fielderror fieldName="userEntity.username" />
                     </div>
                     <div class="login__row">
                         <input type="text" class="login__input" placeholder="phone" name="userEntity.phone"/>
-                        <s:fielderror name="userEntity.phone"/>
+                        <s:fielderror fieldName="userEntity.phone"/>
                     </div>
                     <div class="login__row">
                         <input type="text" class="login__input" placeholder="Email" name="userEntity.email"/>
-                        <s:fielderror name="userEntity.email"/>
+                        <s:fielderror fieldName="userEntity.email"/>
                     </div>
                     <div class="login__row">
                         <input type="text" class="login__input" placeholder="sex" name="userEntity.sex"/>
-                        <s:fielderror name="userEntity.sex"/>
+                        <s:fielderror fieldName="userEntity.sex"/>
                     </div>
                     <br>
                     <input type="submit" class="login__submit" value="注册">

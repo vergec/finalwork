@@ -126,7 +126,7 @@ public class UserAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String companyId = request.getParameter("companyId");
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		session.put("companyId", companyId);
+		session.put("companyid", companyId);
 		return SUCCESS;
 	}
 
@@ -135,7 +135,7 @@ public class UserAction extends ActionSupport {
 	public String addOrder() {
 		logger.info(orderEntity.toString());
 		UserEntity user = (UserEntity) ActionContext.getContext().getSession().get("user");
-		int companyId = Integer.parseInt(ActionContext.getContext().getSession().get("companyId").toString());
+		int companyId = Integer.parseInt(ActionContext.getContext().getSession().get("companyid").toString());
 		logger.debug(String.valueOf(user.getUserid()));
 		orderService.addOrder(orderEntity, user, companyId, time);
 		logger.info(orderEntity.toString());
