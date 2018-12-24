@@ -41,7 +41,7 @@
                             <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title">输入更改的信息</h4>
                         </div>
-                        <form action="../updateCompanyAction" method="post">
+                        <form action="updateCompanyAction" method="post">
                             <div class="modal-body">
                                 <p>公司编号</p>
                                 <input type="text" name="companyEntity.companyid" class="form-control" value="${ly.companyid}" readonly>

@@ -87,7 +87,7 @@
                         class="sr-only">Close</span></button>
                 <h4 class="modal-title">输入更改的信息</h4>
             </div>
-            <form action="../updateCarAction" method="post">
+            <form action="updateCarAction" method="post">
                 <div class="modal-body">
                     <p>车辆编号</p>
                     <input type="text" class="form-control" name="carEntity.carid" id="carid" readonly>
